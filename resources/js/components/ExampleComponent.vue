@@ -9,7 +9,7 @@
 
           <div class="card-body">
             <div>
-                <img v-for="item in list" :key="item.id" class="card-img" v-bind:src="'http://127.0.0.1:8000/storage/'+item.image" alt="post image" style="max-height: 767px">
+                <img v-for="item in list" :key="item.id" class="card-img" v-bind:src="'{{env('APP_URL2')}}/storage/'+item.image" alt="post image" style="max-height: 767px">
                 <infinite-loading @distance="1" @infinite="infiniteHandler"></infinite-loading>
             </div>
           </div>
@@ -34,7 +34,7 @@
             </div>
 
 
-            <img class="card-img" v-bind:src="'http://127.0.0.1:8000/storage/'+item.image" alt="post image" style="max-height: 767px">
+            <img class="card-img" v-bind:src="'{{env('APP_URL2')}}/storage/'+item.image" alt="post image" style="max-height: 767px">
 
             <infinite-loading @distance="1" @infinite="infiniteHandler"></infinite-loading>
         </div>
