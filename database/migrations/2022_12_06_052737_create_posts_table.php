@@ -17,10 +17,10 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->longText('caption');
-            $table->string('image');
+            $table->string('image')->nullable();
+            $table->string('video')->nullable();
             $table->bigInteger('likes')->default(0);
             $table->timestamps();
-
             $table->index('user_id');
         });
     }
