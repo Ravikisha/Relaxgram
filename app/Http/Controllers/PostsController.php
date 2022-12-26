@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
+use FFMpeg;
+use Illuminate\Support\Facades\Validator;
 
 class PostsController extends Controller
 {
@@ -51,24 +53,108 @@ class PostsController extends Controller
         return view('posts.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        // dd(request('video'));
 
         $data = request()->validate([
             'caption' => ['required', 'string'],
-            'image' => ['required', 'image']
+            'image' => ['image'],
+            'video' => ['file']
         ]);
+        // $request->validate([
+        //     'video', // Confirm the upload is a file before checking its type.
+        //     function ($attribute, $value, $fail) {
+        //         $is_image = Validator::make(
+        //             ['upload' => $value],
+        //             ['upload' => 'image']
+        //         )->passes();
 
-        $imagePath = request('image')->store('/uploads', 'public');
+        //         $is_video = Validator::make(
+        //             ['upload' => $value],
+        //             ['upload' => 'mimetypes:video/avi,video/mpeg,video/quicktime']
+        //         )->passes();
 
-        $image = Image::make(public_path("storage/{$imagePath}"))->widen(600, function ($constraint) {
-            $constraint->upsize();
-        });
-        $image->save();
+        //         if (!$is_video && !$is_image) {
+        //             $fail(':attribute must be image or video.');
+        //         }
+
+        //         if ($is_video) {
+        //             $validator = Validator::make(
+        //                 ['video' => $value],
+        //                 ['video' => "max:102400"]
+        //             );
+        //             if ($validator->fails()) {
+        //                 $fail(":attribute must be 10 megabytes or less.");
+        //             }
+        //         }
+
+        //         if ($is_image) {
+        //             $validator = Validator::make(
+        //                 ['image' => $value],
+        //                 ['image' => "max:1024"]
+        //             );
+        //             if ($validator->fails()) {
+        //                 $fail(":attribute must be one megabyte or less.");
+        //             }
+        //         }
+        //     }
+        // ]);
+
+        $imagePath = '';
+        $videoPath = '';
+
+        if (request('image')) {
+
+            $imagePath = request('image')->store('/uploads', 'public');
+
+            $image = Image::make(public_path("storage/{$imagePath}"))->widen(600, function ($constraint) {
+                $constraint->upsize();
+            });
+            $image->save();
+        }
+        if (request('video')) {
+
+            $videoPath = request('video')->store('/uploads', 'public');
+            // $video = Image::make(public_path("storage/{$videoPath}"))->widen(600, function ($constraint) {
+            //     $constraint->upsize();
+            // });
+            // $video = request('video');
+            // $video->move(public_path("storage/{$videoPath}"), $video->getClientOriginalName());
+        }
+
+
+
+        // $video = VideoThumbnail::createThumbnail(
+        //     public_path("storage/{$videoPath}"),
+        //     public_path("storage/uploads/thumbnails"),
+        //     'movie.jpg',
+        //     2,
+        //     1920,
+        //     1080
+        // );
+
+
+        // dd($video,public_path("storage/{$videoPath}"));
+        // generate random name for image file
+        if(request('video')){
+
+            $image_name = time() . '.jpg';
+            FFMpeg::fromDisk('public')
+            ->open($videoPath)
+            ->getFrameFromSeconds(2)
+            ->export()
+            ->toDisk('public')
+            ->save("uploads/thumbnails/{$image_name}");
+
+            $video_thumbnail = "uploads/thumbnails/{$image_name}";
+        }
+
 
         auth()->user()->posts()->create([
             'caption' => $data['caption'],
-            'image' => $imagePath
+            'image' => $imagePath ? $imagePath : $video_thumbnail,
+            'video' => $videoPath
         ]);
 
         return redirect('/profile/' . auth()->user()->username);
@@ -119,5 +205,4 @@ class PostsController extends Controller
         $data = Post::orderBy('id')->with('user')->latest()->paginate(5);
         return response()->json($data);
     }
-
 }
