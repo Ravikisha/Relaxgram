@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 use FFMpeg;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\App;
 
 class PostsController extends Controller
 {
@@ -18,8 +19,9 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(User $user)
     {
+        $follows = (auth()->user()) ? auth()->user()->following->contains($user->profile) : false;
 
         // Array of users that the auth user follows
         $users_id = auth()->user()->following()->pluck('profiles.user_id');
@@ -38,7 +40,7 @@ class PostsController extends Controller
 
         // dd($posts);
 
-        return view('posts.index', compact('posts', 'sugg_users'));
+        return view('posts.index', compact('posts', 'sugg_users', 'follows'));
     }
 
     public function explore()
@@ -59,98 +61,37 @@ class PostsController extends Controller
 
         $data = request()->validate([
             'caption' => ['required', 'string'],
-            'image' => ['image'],
-            'video' => ['file']
+            'video' => ['file', 'max:100000000', 'mimes:avi,mpeg,quicktime,mp4,mov,3gp,3gpp,3gpp2,3g2,wmv,flv,webm,ogg,jpeg,png,jpg,gif,svg,svg+xml,webp,bmp,vnd.microsoft.icon,tiff,vnd.adobe.photoshop,heic,heif']
         ]);
-        // $request->validate([
-        //     'video', // Confirm the upload is a file before checking its type.
-        //     function ($attribute, $value, $fail) {
-        //         $is_image = Validator::make(
-        //             ['upload' => $value],
-        //             ['upload' => 'image']
-        //         )->passes();
-
-        //         $is_video = Validator::make(
-        //             ['upload' => $value],
-        //             ['upload' => 'mimetypes:video/avi,video/mpeg,video/quicktime']
-        //         )->passes();
-
-        //         if (!$is_video && !$is_image) {
-        //             $fail(':attribute must be image or video.');
-        //         }
-
-        //         if ($is_video) {
-        //             $validator = Validator::make(
-        //                 ['video' => $value],
-        //                 ['video' => "max:102400"]
-        //             );
-        //             if ($validator->fails()) {
-        //                 $fail(":attribute must be 10 megabytes or less.");
-        //             }
-        //         }
-
-        //         if ($is_image) {
-        //             $validator = Validator::make(
-        //                 ['image' => $value],
-        //                 ['image' => "max:1024"]
-        //             );
-        //             if ($validator->fails()) {
-        //                 $fail(":attribute must be one megabyte or less.");
-        //             }
-        //         }
-        //     }
-        // ]);
 
         $imagePath = '';
         $videoPath = '';
 
-        if (request('image')) {
+        if (request('video')->getMimeType() == 'image/jpeg' | request('video')->getMimeType() == 'image/png' | request('video')->getMimeType() == 'image/jpg' | request('video')->getMimeType() == 'image/gif' | request('video')->getMimeType() == 'image/svg' | request('video')->getMimeType() == 'image/svg+xml' | request('video')->getMimeType() == 'image/webp' | request('video')->getMimeType() == 'image/bmp' | request('video')->getMimeType() == 'image/vnd.microsoft.icon' | request('video')->getMimeType() == 'image/tiff' | request('video')->getMimeType() == 'image/vnd.adobe.photoshop' | request('video')->getMimeType() == 'image/heic' | request('video')->getMimeType() == 'image/heif') {
 
-            $imagePath = request('image')->store('/uploads', 'public');
+            $imagePath = request('video')->store('/uploads', 'public');
 
             $image = Image::make(public_path("storage/{$imagePath}"))->widen(600, function ($constraint) {
                 $constraint->upsize();
             });
             $image->save();
         }
-        if (request('video')) {
+        else if (request('video')->getMimeType() == 'video/avi' | request('video')->getMimeType() == 'video/mpeg' | request('video')->getMimeType() == 'video/quicktime' | request('video')->getMimeType() == 'video/mp4' | request('video')->getMimeType() == 'video/mov' | request('video')->getMimeType() == 'video/3gp' | request('video')->getMimeType() == 'video/3gpp' | request('video')->getMimeType() == 'video/3gpp2' | request('video')->getMimeType() == 'video/3g2' | request('video')->getMimeType() == 'video/wmv' | request('video')->getMimeType() == 'video/flv' | request('video')->getMimeType() == 'video/webm' | request('video')->getMimeType() == 'video/ogg') {
 
             $videoPath = request('video')->store('/uploads', 'public');
-            // $video = Image::make(public_path("storage/{$videoPath}"))->widen(600, function ($constraint) {
-            //     $constraint->upsize();
-            // });
-            // $video = request('video');
-            // $video->move(public_path("storage/{$videoPath}"), $video->getClientOriginalName());
-        }
-
-
-
-        // $video = VideoThumbnail::createThumbnail(
-        //     public_path("storage/{$videoPath}"),
-        //     public_path("storage/uploads/thumbnails"),
-        //     'movie.jpg',
-        //     2,
-        //     1920,
-        //     1080
-        // );
-
-
-        // dd($video,public_path("storage/{$videoPath}"));
-        // generate random name for image file
-        if(request('video')){
-
             $image_name = time() . '.jpg';
             FFMpeg::fromDisk('public')
-            ->open($videoPath)
-            ->getFrameFromSeconds(2)
-            ->export()
-            ->toDisk('public')
-            ->save("uploads/thumbnails/{$image_name}");
+                ->open($videoPath)
+                ->getFrameFromSeconds(2)
+                ->export()
+                ->toDisk('public')
+                ->save("uploads/thumbnails/{$image_name}");
 
             $video_thumbnail = "uploads/thumbnails/{$image_name}";
         }
-
-
+        else{
+            return Redirect::back()->withErrors(['video' => 'Invalid File Type']);
+        }
         auth()->user()->posts()->create([
             'caption' => $data['caption'],
             'image' => $imagePath ? $imagePath : $video_thumbnail,
@@ -159,7 +100,6 @@ class PostsController extends Controller
 
         return redirect('/profile/' . auth()->user()->username);
         // return redirect()->route('profile.index', ['user' => auth()->user()]);
-
     }
 
     public function destroy(Post $post)

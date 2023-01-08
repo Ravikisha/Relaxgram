@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,18 +13,23 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     {{-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
 
     <!-- Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 </head>
+
 <body>
     <div id="app">
 
@@ -33,7 +39,7 @@
 
                 <!-- Logo -->
                 <a href="{{ url('/') }}" class="navbar-brand">
-                    <img src="{{asset('img/cleanlogo.png')}}" alt="InstaClone Logo" >
+                    <img src="{{ asset('img/cleanlogo.png') }}" alt="InstaClone Logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar5">
                     <span class="navbar-toggler-icon"></span>
@@ -45,8 +51,10 @@
                     <form action="/search" method="POST" role="search" class="m-auto d-inline w-80">
                         @csrf
                         <div class="input-group">
-                            <input class="form-control" name="q" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" style="border-color: #ced4da"><i class="fas fa-search"></i></button>
+                            <input class="form-control" name="q" type="search" placeholder="Search"
+                                aria-label="Search">
+                            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit"
+                                style="border-color: #ced4da"><i class="fas fa-search"></i></button>
                         </div>
                     </form>
 
@@ -77,14 +85,23 @@
                                     <i class="far fa-message fa-2x"></i>
                                 </a>
                             </li>
+                            @can('update', Auth::user()->profile)
+                            <li class="nav-item px-2 {{ Route::is('post.create') ? 'active' : '' }}">
+                                <a class="nav-link" href="/p/create">
+                                    <i class="far fa-add fa-2x"></i>
+                                </a>
+                            </li>
+                        @endcan
                             {{-- <li class="nav-item px-2 ">
                                 <a class="nav-link" href="#">
                                     <i class="far fa-heart fa-2x"></i>
                                 </a>
                             </li> --}}
                             <li class="nav-item pl-2">
-                                <a href="/profile/{{Auth::user()->username}}" class="nav-link" style="width: 42px; height: 22px; padding-top: 6px;" >
-                                    <img src="{{ asset(Auth::user()->profile->getProfileImage())  }}" class="rounded-circle w-100">
+                                <a href="/profile/{{ Auth::user()->username }}" class="nav-link"
+                                    style="width: 42px; height: 22px; padding-top: 6px;">
+                                    <img src="{{ asset(Auth::user()->profile->getProfileImage()) }}"
+                                        class="rounded-circle w-100">
                                     {{-- <i class="far fa-user fa-2x"></i> --}}
                                 </a>
                             </li>
@@ -93,34 +110,36 @@
                             <!-- To get current routedd(Route::currentRouteName())  -->
                             {{-- @if (Route::is('profile.index')) --}}
 
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre></a>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre></a>
 
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                        @can('update', Auth::user()->profile)
-                                            <a class="dropdown-item" href="/p/create" role="button">
-                                                Add New Post
-                                            </a>
-                                        @endcan
-
-                                        @can('update', Auth::user()->profile)
-                                            <a class="dropdown-item" href="/stories/create" role="button">
-                                                Add New Story
-                                            </a>
-                                        @endcan
-
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
+                                    @can('update', Auth::user()->profile)
+                                        <a class="dropdown-item" href="/p/create" role="button">
+                                            Add New Post
                                         </a>
+                                    @endcan
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
+                                    @can('update', Auth::user()->profile)
+                                        <a class="dropdown-item" href="/stories/create" role="button">
+                                            Add New Story
+                                        </a>
+                                    @endcan
+
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
                             {{-- @endif --}}
 
                         @endguest
@@ -137,6 +156,8 @@
     </div>
 
     @yield('exscript')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
 </body>
+
 </html>

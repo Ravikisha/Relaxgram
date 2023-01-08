@@ -11,7 +11,7 @@
 
                         <!-- Post Image -->
                         <a href="/p/{{ $post->id }}" style='height: 320px; width: auto'>
-                            <img src="{{ asset("storage/$post->image") }}" class="card-img-top h-100 w-100" alt="..." >
+                            <img src="{{ asset("storage/$post->image") }}" class="card-img-top h-100 w-100 object-fit-cover" alt="..." >
                         </a>
 
                         <!-- User Info -->

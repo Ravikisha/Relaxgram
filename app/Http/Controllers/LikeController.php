@@ -30,10 +30,11 @@ class LikeController extends Controller
                 "user_id" => $user->id,
                 "post_id" => $id,
                 "State" => true
-
             ]);
         }
 
-        return Redirect::to('/');
+        // dd($like);
+
+        return Redirect::back();
     }
 }
