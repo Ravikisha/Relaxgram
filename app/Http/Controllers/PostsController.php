@@ -19,9 +19,9 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(User $user)
+    public function index()
     {
-        $follows = (auth()->user()) ? auth()->user()->following->contains($user->profile) : false;
+
 
         // Array of users that the auth user follows
         $users_id = auth()->user()->following()->pluck('profiles.user_id');
@@ -40,7 +40,7 @@ class PostsController extends Controller
 
         // dd($posts);
 
-        return view('posts.index', compact('posts', 'sugg_users', 'follows'));
+        return view('posts.index', compact('posts', 'sugg_users'));
     }
 
     public function explore()
