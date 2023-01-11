@@ -5,76 +5,75 @@
     <div class="container">
         <div class="row justify-content-center">
             {{-- Main section --}}
-            <main class="main col-md-8 px-2 py-3">
+            <main class="main col-md-8 px-2 py-3 space-y-4">
 
                 @forelse ($posts as $post)
                     @php
                         $state = false;
                     @endphp
 
-                    <div class="card mx-auto custom-card mb-5" id="prova">
+                    <div class="max-w-[500px] bg-white border rounded-md border-gray-300 shadow-md" id="prova">
                         <!-- Card Header -->
                         <div class="card-header d-flex justify-content-between align-items-center bg-white pl-3 pr-1 py-2">
                             <div class="d-flex align-items-center">
-                                <a href="/profile/{{ $post->user->username }}" style="width: 32px; height: 32px;">
+                                <a href="/profile/{{ $post->user->username }}">
                                     <img src="{{ asset($post->user->profile->getProfileImage()) }}"
-                                        class="rounded-circle w-100">
+                                        class="rounded-full  h-[35px] w-[35px] object-cover">
                                 </a>
-                                <a href="/profile/{{ $post->user->username }}"
-                                    class="my-0 ml-3 text-dark text-decoration-none">
+                                <a href="/profile/{{ $post->user->username }}" class="my-0 ml-3 text-sm font-semibold">
                                     {{ $post->user->name }}
                                 </a>
                             </div>
-                            <div class="card-dots">
+                            <div>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-link text-muted" data-toggle="modal"
-                                    data-target="#post{{ $post->id }}">
-                                    <i class="fas fa-ellipsis-h"></i>
+                                <button type="button" class="PostActionsBtn relative"
+                                    data-target="#PostActions{{ $post->id }}">
+
+                                    <div id="PostActions{{ $post->id }}"
+                                        class="modal-shadow bg-white absolute right-[35px] z-10 !rounded-lg Modal-Slide-Down">
+                                        <ul>
+                                            <li
+                                                class="px-2 py-2 border-b bg-[#fbfbfb] transition-all hover:shadow rounded-t-lg">
+                                                <a href="#"
+                                                    class="flex items-center justify-between text-xs font-light hover:font-semibold transition-all text-gray-900 no-underline">
+                                                    <p class="ml-3 mr-4 whitespace-nowrap">Unfollow</p>
+                                                </a>
+                                            </li>
+                                            <li class="px-2 py-1 border-b bg-[#fbfbfb] transition-all hover:shadow">
+                                                <form
+                                                    action="{{ url()->action('App\Http\Controllers\PostsController@destroy', $post->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input
+                                                        class="text-xs font-light hover:font-semibold transition-all w-full text-gray-900 no-underline"
+                                                        type="submit" value="Delete">
+                                                </form>
+                                            </li>
+                                            <li class="px-2 py-2 bg-[#fbfbfb] hover:shadow transition-all rounded-b-lg">
+                                                <a href="/p/{{ $post->id }}"
+                                                    class="flex items-center justify-between text-xs font-light hover:font-semibold transition-all text-gray-900 no-underline">
+                                                    <p class="ml-3 mr-4 whitespace-nowrap">Go to post</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <i class="fa-solid fa-ellipsis-h text-lg mx-2 transition-all hover:scale-125"></i>
                                 </button>
 
-                                <!-- Dots Modal -->
-                                <div class="modal fade" id="post{{ $post->id }}" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-                                        <div class="modal-content">
-                                            <ul class="list-group">
-                                                <a href="#">
-                                                    <li class="btn list-group-item">Unfollow</li>
-                                                </a>
-                                                @can('delete', $post)
-                                                    <form
-                                                        action="{{ url()->action('App\Http\Controllers\PostsController@destroy', $post->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <li class="btn btn-danger list-group-item">
-                                                            <button class="btn" type="submit">Delete</button>
-                                                        </li>
-                                                    </form>
-                                                @endcan
-                                                <a href="/p/{{ $post->id }}">
-                                                    <li class="btn list-group-item">Go to post</li>
-                                                </a>
-                                                <a href="#">
-                                                    <li class="btn list-group-item" data-dismiss="modal">Cancel</li>
-                                                </a>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
                         <!-- Card Image -->
                         <div class="js-post" ondblclick="showLike(this, 'like_{{ $post->id }}')">
                             <i class="fa fa-heart"></i>
-                            {{-- <img class="card-img" src="{{ asset("storage/$post->image") }}" alt="post image" style="max-height: 767px"> --}}
                             @if ($post->video)
                                 <video class="card-img" src="{{ asset("storage/$post->video") }}" alt="post image"
                                     style="max-height: 767px" controls></video>
                             @else
-                                <img class="card-img" src="{{ asset("storage/$post->image") }}" alt="post image"
-                                    style="max-height: 767px; object-fit: contain;">
+                            <img class="card-img" src="{{ asset("storage/$post->image") }}" alt="post image"
+                                style="max-height: 767px">
                             @endif
                         </div>
 
@@ -83,7 +82,7 @@
 
                             <div class="d-flex flex-row">
                                 <form method="POST"
-                                    action="{{ action('App\Http\Controllers\LikeController@update2', ['like' => $post->id]) }}">
+                                    action="{{ url()->action('App\Http\Controllers\LikeController@update2', ['like' => $post->id]) }}">
                                     @csrf
                                     @if (true)
                                         <input id="inputid" name="update" type="hidden" value="1">
@@ -106,64 +105,63 @@
 
                                         @if ($state)
                                             <button type="submit" class="btn pl-0">
-                                                <i class="fas fa-heart fa-2x" style="color:red"></i>
+                                                <i class="fas fa-heart fa-2x transition-all hover:scale-110"
+                                                    style="color:red"></i>
                                             </button>
                                         @else
                                             <button type="submit" class="btn pl-0">
-                                                <i class="far fa-heart fa-2x"></i>
+                                                <i class="far fa-heart fa-2x transition-all hover:scale-110"></i>
                                             </button>
                                         @endif
                                     @endif
 
                                     <a href="/p/{{ $post->id }}" class="btn pl-0">
-                                        <i class="far fa-comment fa-2x"></i>
+                                        <i class="far fa-comment fa-2x transition-all hover:scale-110"></i>
                                     </a>
 
                                     <!-- Share Button trigger modal -->
-                                    <button type="button" class="btn pl-0 pt-0" data-toggle="modal"
-                                        data-target="#sharebtn{{ $post->id }}">
-                                        <svg aria-label="Share Post" class="_8-yf5 " fill="#262626" height="22"
-                                            viewBox="0 0 48 48" width="21">
+
+                                    <button type="button" class="SharePostBtn relative btn pl-0 pt-0 mt-[3px`]"
+                                        data-target="#ShareActions{{ $post->id }}">
+
+                                        <div id="ShareActions{{ $post->id }}"
+                                            class="modal-shadow bg-[#fbfbfb] absolute bottom-[40px] z-10 rounded-md Modal-Slide-Down">
+                                            <ul>
+                                                <li
+                                                    class="flex items-center justify-between px-2 py-[0.4rem] text-base font-normal text-gray-900 rounded-md transition-all hover:font-semibold bg-gray-100 group hover:shadow">
+                                                    <input type="text" hidden
+                                                        value="http://localhost:8000/p/{{ $post->id }}"
+                                                        id="copy_{{ $post->id }}" />
+                                                    <p class="text-xs whitespace-nowrap"
+                                                        onclick="copyToClipboard('copy_{{ $post->id }}')">Copy Link
+                                                    </p>
+
+                                                    <i class="fa-regular fa-copy text-black ml-2 text-base"></i>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+
+                                        <svg aria-label="Share Post" class="mt-[4px] transition-all hover:scale-110"
+                                            fill="#262626" height="22" viewBox="0 0 48 48" width="21">
                                             <path
                                                 d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3 3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6 1 1.2 1.1h.2c.5 0 1-.3 1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2 6.1h35.5L18 18.7 5.2 6.1zm18.7 33.6l-4.4-18.4L42.4 8.6 23.9 39.7z">
                                             </path>
                                         </svg>
                                     </button>
-
-                                    <!-- Share Modal -->
-                                    <div class="modal fade" id="sharebtn{{ $post->id }}" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-                                            <div class="modal-content">
-                                                <ul class="list-group">
-                                                    <li class="list-group-item"
-                                                        style="position: absolute; left: -1000px; top: -1000px">
-                                                        <input type="text"
-                                                            value="http://localhost:8000/p/{{ $post->id }}"
-                                                            id="copy_{{ $post->id }}" />
-                                                    </li>
-                                                    <li class="btn list-group-item" data-dismiss="modal"
-                                                        onclick="copyToClipboard('copy_{{ $post->id }}')">Copy Link
-                                                    </li>
-                                                    <li class="btn list-group-item" data-dismiss="modal">Cancel</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </form>
                             </div>
                             <div class="flex-row">
 
                                 <!-- Likes -->
                                 @if (count($post->like->where('State', true)) > 0)
-                                    <h6 class="card-title">
+                                    <h6>
                                         <strong>{{ count($post->like->where('State', true)) }} likes</strong>
                                     </h6>
                                 @endif
 
                                 {{-- Post Caption --}}
-                                <p class="card-text mb-1">
+                                <p class="my-1">
                                     <a href="/profile/{{ $post->user->username }}"
                                         class="my-0 text-dark text-decoration-none">
                                         <strong>{{ $post->user->name }}</strong>
@@ -172,13 +170,14 @@
                                 </p>
 
                                 <!-- Comment -->
-                                <div class="comments">
+                                <div class="my-1.5">
                                     @if (count($post->comments) > 0)
                                         <a href="/p/{{ $post->id }}" class="text-muted">View all
-                                            {{ count($post->comments) }} comments</a>
+                                            {{ count($post->comments) }} comments
+                                        </a>
                                     @endif
                                     @foreach ($post->comments->sortByDesc('created_at')->take(2) as $comment)
-                                        <p class="mb-1"><strong>{{ $comment->user->name }}</strong>
+                                        <p class="my-1"><strong>{{ $comment->user->name }}</strong>
                                             {{ $comment->body }}</p>
                                     @endforeach
                                 </div>
@@ -189,17 +188,20 @@
                         </div>
 
                         <!-- Card Footer -->
-                        <div class="card-footer p-0">
+                        <div class="card-footer bg-white">
                             <!-- Add Comment -->
                             <form action="{{ action('App\Http\Controllers\CommentController@store') }}" method="POST">
                                 @csrf
-                                <div class="form-group mb-0  text-muted">
-                                    <div class="input-group is-invalid">
+                                <div class="form-group mb-0 text-muted">
+                                    <div class="flex justify-center items-center">
                                         <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                        <textarea class="form-control" id="body" name='body' rows="1" cols="1"
-                                            placeholder="Add a comment..."></textarea>
-                                        <div class="input-group-append">
-                                            <button class="btn btn-md btn-outline-info" type="submit">Post</button>
+                                        <textarea class="form-control border-0 focus:shadow-none resize-none overflow-hidden" id="body" name='body'
+                                            rows="1" cols="1" placeholder="Add a comment..."></textarea>
+                                        <div class="input-group-append bg-white">
+                                            <button type="submit"
+                                                class="text-blue-500 font-semibold text-sm cursor-default">
+                                                Post
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -269,15 +271,9 @@
                                         </a>
                                         <small class="text-muted">New to Instagram </small>
                                     </div>
-                                    @can('update', $sugg_user->profile)
-                                        <a class="btn btn-outline-secondary ml-3"
-                                            href="/profile/{{ $sugg_user->username }}/edit" role="button">
-                                            Edit Profile
-                                        </a>
-                                    @else
-                                        <follow-button user-id="{{ $sugg_user->username }}" follows="{{ $follows }}">
-                                        </follow-button>
-                                    @endcan
+                                    <a href="#" class='ml-auto text-info text-decoration-none'>
+                                        Follow
+                                    </a>
                                 </div>
                             </div>
                         @endforeach
@@ -302,9 +298,7 @@
 <script>
     function copyToClipboard(id) {
         var copyText = document.getElementById(id);
-        copyText.select();
-        copyText.setSelectionRange(0, 99999)
-        document.execCommand("copy");
+        navigator.clipboard.writeText(copyText.value);
     }
 
     function showLike(e, id) {
@@ -316,37 +310,4 @@
         }, 2000);
     }
 </script>
-
-{{-- <script>
-
-        document.addEventListener('submit', function(e){
-            e.preventDefault()
-            console.log('script run... ');
-            var btn = e.submitter;
-            console.log(btn.name)
-
-            if (btn.name === 'liked'){
-                btn.classList.toggle('text-danger');
-                btn.value = !(btn.value == 'true');
-            }
-
-        })
-
-            " action="{{url()->action('App\Http\Controllers\PostsController@updatelikes', ['post'=>$post->id])}}">
-            url =  http://localhost:8000/p/{post}
-            (async () => {
-                const rawResponse = await fetch('http://localhost:8000/p/', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({a: 1, b: 'Textual content'})
-                });
-                const content = await rawResponse.json();
-
-                console.log(content);
-            })();
-
-    </script> --}}
 @endsection

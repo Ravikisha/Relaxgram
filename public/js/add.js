@@ -1,160 +1,200 @@
-const main = document.getElementsByClassName("content")[0];
-const searchBar = document.getElementsByClassName("searchbar")[0];
-const actionsModal = document.getElementById("actions-modal");
-const cryptoModal = document.getElementById("crypto-modal");
 
-var isSearchOpened = false;
-var isMoreActionsOpened = false;
+const ModalContainer = document.querySelector('[ModalContainer]')
+const ModalBackground = document.querySelector('[ModalBackground]')
+const ModalContent = document.querySelector('[ModalContent]'),
+    ModalHeader = document.querySelector('[ModalHeader]'),
+    ModalBody = document.querySelector('[ModalBody]');
+var isCreatePostModalOpen = false;
+var isFirstTimeCreatePostModalOpen = false;
 
-const openSearchBar = () => {
-    if (!isSearchOpened) {
-        main.classList.add("sidebar-reducer");
-        setTimeout(() => {
-            searchBar.classList.add("visible-searchBar");
-            searchBar.classList.remove("hide-searchBar");
-        }, 500);
-        isSearchOpened = true;
-    }
-};
-
-const closeSearchBar = () => {
-    if (isSearchOpened) {
-        searchBar.classList.remove("visible-searchBar");
-        searchBar.classList.add("hide-searchBar");
-        setTimeout(() => {
-            main.classList.remove("sidebar-reducer");
-        }, 500);
-        isSearchOpened = false;
-    }
-};
-
-const openMoreActions = () => {
-    if (!isMoreActionsOpened) {
-        cryptoModal.classList.remove("cypto-modal-slidedown-animation");
-        cryptoModal.classList.add("cypto-modal-slideup-animation");
-        isMoreActionsOpened = true;
-    }
-};
-
-const closeMoreActions = () => {
-    if (isMoreActionsOpened) {
-        cryptoModal.classList.remove("cypto-modal-slideup-animation");
-        cryptoModal.classList.add("cypto-modal-slidedown-animation");
-        isMoreActionsOpened = false;
-    }
-};
-
-const onClkSearchBtn = () => {
-    if (!isSearchOpened) {
-        if (isMoreActionsOpened) {
-            closeMoreActions();
-            setTimeout(() => {
-                openSearchBar();
-            }, 300);
-            return;
+const openCreatePost = () => {
+    if (!isCreatePostModalOpen) {
+        if (!isFirstTimeCreatePostModalOpen) {
+            ModalContent.classList.remove('hidden')
+            isFirstTimeCreatePostModalOpen = true
         }
-        openSearchBar();
-        return;
-    }
-    closeSearchBar();
-};
-
-const onClkMoreActionBtn = () => {
-    if (!isMoreActionsOpened) {
-        if (isSearchOpened) {
-            closeSearchBar();
-            setTimeout(() => {
-                openMoreActions();
-            }, 800);
-            return;
-        }
-        openMoreActions();
-        return;
-    }
-    closeMoreActions();
-};
-
-//selecting all required elements
-const dropArea = document.querySelector(".drag-area"),
-    button = dropArea.querySelector("button"),
-    input = dropArea.querySelector("input");
-let file; //this is a global variable and we'll use it inside multiple functions
-
-
-button.onclick = () => {
-    input.click(); //if user click on the button then the input also clicked
-};
-
-input.addEventListener("change", function () {
-    //getting user select file and [0] this means if user select multiple files then we'll select only the first one
-    file = this.files[0];
-    dropArea.classList.add("active");
-    showFile(); //calling function
-});
-
-//If user Drag File Over DropArea
-dropArea.addEventListener("dragover", (event) => {
-    event.preventDefault(); //preventing from default behaviour
-    dropArea.classList.add("active");
-    dragText.textContent = "Release to Upload File";
-});
-
-//If user leave dragged File from DropArea
-dropArea.addEventListener("dragleave", () => {
-    dropArea.classList.remove("active");
-    dragText.textContent = "Drag & Drop to Upload File";
-});
-
-//If user drop File on DropArea
-dropArea.addEventListener("drop", (event) => {
-    event.preventDefault(); //preventing from default behaviour
-    //getting user select file and [0] this means if user select multiple files then we'll select only the first one
-    file = event.dataTransfer.files[0];
-    showFile(); //calling function
-});
-
-function showFile() {
-    let fileType = file.type; //getting selected file type
-    let validExtensions = ["image/jpeg", "image/jpg", "image/png"]; //adding some valid image extensions in array
-    if (validExtensions.includes(fileType)) {
-        //if user selected file is an image file
-        let fileReader = new FileReader(); //creating new FileReader object
-        fileReader.onload = () => {
-            let fileURL = fileReader.result; //passing user file source in fileURL variable
-            let imgTag = `<div class="border w-[60%] h-full flex justify-center items-center bg-[#F7F7F2]">
-            <img class="create-post-modal-img" src=${fileURL} alt="">
-          </div>
-
-          <div class="w-[40%] h-full p-3">
-            <div class="flex gap-2 items-center">
-              <img class="rounded-full h-[30px] w-[30px]" src="/public/imgs/pawan.jpeg" alt="">
-              <span class="text-xs font-semibold">pawan_13g</span>
-            </div>
-
-            <div class="mt-5">
-              <!-- <input type="area" class="appearance-none p-0 outline-none border-0 w-full h-[200px]" placeholder="Write a caption"> -->
-              <textarea name="caption-text" class="w-full h-[120px] border-0 bg-[#e7e7e7] rounded-md" placeholder="Write a caption.."></textarea>
-            </div>
-          </div>`; //creating an img tag and passing user selected file source inside src attribute
-            dropArea.classList.toggle("post-section");
-            dropArea.innerHTML = imgTag; //adding that created img tag inside dropArea container
-        };
-        fileReader.readAsDataURL(file);
-    } else {
-        alert("This is not an Image File!");
-        dropArea.classList.remove("active");
-        dragText.textContent = "Drag & Drop to Upload File";
+        ModalContent.classList.remove('Modal-ScaleOut-Center');
+        ModalBackground.classList.remove('invisible')
+        ModalBackground.classList.remove('opacity-0')
+        ModalContainer.classList.add('ModalContainer')
+        ModalContent.classList.add('Modal-ScaleIn-Center');
+        isCreatePostModalOpen = true;
     }
 }
 
-const targetEl = document.getElementById("defaultModal");
+const closeCreatePost = () => {
+    if (isCreatePostModalOpen) {
+        ModalContent.classList.remove('Modal-ScaleIn-Center')
+        ModalContent.classList.add('Modal-ScaleOut-Center')
+        setTimeout(() => {
+            ModalContainer.classList.remove('ModalContainer')
+        }, 200);
+        ModalBackground.classList.add('invisible')
+        ModalBackground.classList.add('opacity-0')
+        isCreatePostModalOpen = false;
+    }
+}
 
-const options = {
-    placement: "bottom-right",
-    backdrop: "dynamic",
-    backdropClasses: "hidden",
-};
-console.log(cryptoModal);
-let modal = new Modal(cryptoModal, options);
-console.log(modal);
-console.log("Hello World");
+const onClkToggleCreatePost = () => {
+    console.log('click')
+    if (!isCreatePostModalOpen) {
+        openCreatePost();
+        return
+    }
+    closeCreatePost();
+}
+
+const main = document.getElementsByClassName('content')[0]
+const searchBar = document.getElementsByClassName('searchbar')[0]
+const actionsModal = document.getElementById('actions-modal');
+const Modal = document.getElementById('Modal')
+
+var isSearchOpened = false;
+var isModalOpen = false;
+
+const openSearchBar = () => {
+    if (!isSearchOpened) {
+        main.classList.add('sidebar-reducer')
+        setTimeout(() => {
+            searchBar.classList.add('visible-searchBar')
+            searchBar.classList.remove('hide-searchBar')
+        }, 500);
+        isSearchOpened = true
+    }
+}
+
+const closeSearchBar = () => {
+    if (isSearchOpened) {
+        searchBar.classList.remove('visible-searchBar')
+        searchBar.classList.add('hide-searchBar')
+        setTimeout(() => {
+            main.classList.remove('sidebar-reducer')
+        }, 500);
+        isSearchOpened = false
+    }
+}
+
+const openMoreActions = () => {
+    if (!isModalOpen) {
+        Modal.classList.remove('Modal-Slide-Down')
+        Modal.classList.add('Modal-Slide-Up')
+        isModalOpen = true;
+    }
+}
+
+const closeMoreActions = () => {
+    if (isModalOpen) {
+        Modal.classList.add('Modal-Slide-Down')
+        Modal.classList.remove('Modal-Slide-Up')
+        isModalOpen = false;
+    }
+}
+
+const onClkSearchBtn = () => {
+    if (!isSearchOpened) {
+        if (isModalOpen) {
+            closeMoreActions()
+            setTimeout(() => {
+                openSearchBar();
+            }, 300);
+            return
+        }
+        openSearchBar();
+        return
+    }
+    closeSearchBar();
+}
+
+const onClkMoreActionBtn = () => {
+    console.log(Modal)
+    if (!isModalOpen) {
+        if (isSearchOpened) {
+            closeSearchBar()
+            setTimeout(() => {
+                openMoreActions();
+            }, 800);
+            return
+        }
+        openMoreActions();
+        return
+    }
+    closeMoreActions();
+}
+
+const PostActionsBtns = document.querySelectorAll('.PostActionsBtn');
+const SharePostBtns = document.querySelectorAll('.SharePostBtn');
+
+let isPostActionModalOpen = false;
+let isSharePostModalOpen = false;
+
+SharePostBtns.forEach(element => {
+    element.onclick = function () {
+        const trigger = document.querySelector(element.getAttribute('data-target'));
+
+
+        const openSharePostModal = () => {
+            if (!isSharePostModalOpen) {
+                trigger.classList.remove('Modal-Slide-Down')
+                trigger.classList.add('Modal-Slide-Up')
+                isSharePostModalOpen = true;
+            }
+        }
+
+        const closeSharePostModal = () => {
+            if (isSharePostModalOpen) {
+                trigger.classList.add('Modal-Slide-Down')
+                trigger.classList.remove('Modal-Slide-Up')
+                isSharePostModalOpen = false;
+            }
+        }
+
+        if (!isSharePostModalOpen) {
+            if (isSearchOpened) {
+                closeSearchBar()
+                setTimeout(() => {
+                    openSharePostModal();
+                }, 800);
+                return
+            }
+            openSharePostModal();
+            return
+        }
+        closeSharePostModal();
+    }
+});
+
+PostActionsBtns.forEach(element => {
+    element.onclick = function () {
+        const trigger = document.querySelector(element.getAttribute('data-target'));
+
+
+        const openPostActions = () => {
+            if (!isPostActionModalOpen) {
+                trigger.classList.remove('Modal-Slide-Down')
+                trigger.classList.add('Modal-Slide-Up')
+                isPostActionModalOpen = true;
+            }
+        }
+
+        const closePostActions = () => {
+            if (isPostActionModalOpen) {
+                trigger.classList.add('Modal-Slide-Down')
+                trigger.classList.remove('Modal-Slide-Up')
+                isPostActionModalOpen = false;
+            }
+        }
+
+        if (!isPostActionModalOpen) {
+            if (isSearchOpened) {
+                closeSearchBar()
+                setTimeout(() => {
+                    openPostActions();
+                }, 800);
+                return
+            }
+            openPostActions();
+            return
+        }
+        closePostActions();
+    }
+});

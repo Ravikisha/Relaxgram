@@ -105,10 +105,8 @@ class PostsController extends Controller
     public function destroy(Post $post)
     {
         $this->authorize('delete', $post);
-
         $post->delete();
-
-        return Redirect::back();
+        return redirect('/profile/' . auth()->user()->username);
     }
 
     public function show(Post $post)

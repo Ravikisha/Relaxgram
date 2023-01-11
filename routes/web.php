@@ -71,7 +71,7 @@ Route::get('/posts', 'App\Http\Controllers\PostsController@vue_index'); // Infin
 Route::get('/profile/{user}', 'App\Http\Controllers\ProfilesController@index')->name('profile.index');
 Route::get('/profile/{user}/edit', 'App\Http\Controllers\ProfilesController@edit')->name('profile.edit');
 Route::patch('/profile/{user}', 'App\Http\Controllers\ProfilesController@update')->name('profile.update');
-Route::any('/search', 'App\Http\Controllers\ProfilesController@search')->name('profile.search'); // Search Page
+Route::post('/search', 'App\Http\Controllers\ProfilesController@search')->name('profile.search'); // Search Page
 Route::post('/follow/{user}', 'App\Http\Controllers\FollowsController@store');
 
 Route::post('/stories', 'App\Http\Controllers\StoryController@store')->name('stories.store');

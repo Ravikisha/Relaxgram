@@ -13,16 +13,19 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    <script src="{{ asset('js/add.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/create-post.js') }}" defer></script> --}}
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    {{-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
 
     <!-- Styles -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/add.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/scss.css') }}" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -30,133 +33,313 @@
 
 </head>
 
+
 <body>
-    <div id="app">
+    {{-- @php
+        if(isset($details)){
+            ddd($details);
+        }
 
-        <!-- Header section -->
-        <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+    @endphp --}}
+    <div class="containerr content">
+        <div class="z-10">
+            <div class="sidebar ">
+                <header class="sidebar-header">
+                    <img class="logo-img" src="{{ asset('demo-imgs/logo.svg') }}" />
+                    <i class="logo-icon uil uil-instagram"></i>
+                </header>
+                <nav>
+                    <button class="h-[60px] bg-transparent b-0  p-0 cursor-pointer text-inherit"
+                        onclick="location.href = '/';">
+                        <span>
+                            <i class="uil uil-estate"></i>
+                            <span>Home</span>
+                        </span>
+                    </button>
+                    <button class="h-[60px] bg-transparent b-0  p-0 cursor-pointer text-inherit"
+                        onclick="onClkSearchBtn()">
+                        <span>
+                            <i class="uil uil-search"></i>
+                            <span>Search</span>
+                        </span>
+                    </button>
+                    <button class="h-[60px] bg-transparent b-0  p-0 cursor-pointer text-inherit"
+                        onclick="location.href = '/explore';">
+                        <span>
+                            <i class="uil uil-compass"></i>
+                            <span>Explore</span>
+                        </span>
+                    </button>
 
-                <!-- Logo -->
-                <a href="{{ url('/') }}" class="navbar-brand">
-                    <img src="{{ asset('img/cleanlogo.png') }}" alt="InstaClone Logo">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar5">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                    <button class="h-[60px] bg-transparent b-0 p-0 cursor-pointer text-inherit"
+                        onclick="onClkToggleCreatePost()">
+                        <span>
+                            <i class="uil uil-plus-circle"> </i>
+                            <span>Create</span>
+                        </span>
 
-                <!-- Links -->
-                <div class="navbar-collapse collapse justify-content-stretch" id="navbar5">
+                    </button>
+                    <div ModalContainer>
 
-                    <form action="/search" method="POST" role="search" class="m-auto d-inline w-80">
-                        @csrf
-                        <div class="input-group">
-                            <input class="form-control" name="q" type="search" placeholder="Search"
-                                aria-label="Search">
-                            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit"
-                                style="border-color: #ced4da"><i class="fas fa-search"></i></button>
-                        </div>
-                    </form>
+                        <div ModalBackground
+                            class="fixed top-0 left-0 h-full w-full grid place-items-center opacity-0 invisible bg-black bg-opacity-5 transition-all scale-100"
+                            onclick="onClkToggleCreatePost()"></div>
 
-                    <ul class="navbar-nav">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item px-2 {{ Route::is('post.index') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ url('/') }}">
-                                    <i class="fas fa-home fa-2x"></i>
-                                </a>
-                            </li>
-                            <li class="nav-item px-2 {{ Route::is('post.explore') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ url('/explore') }}">
-                                    <i class="far fa-compass fa-2x"></i>
-                                </a>
-                            </li>
-                            <li class="nav-item px-2 {{ Route::is('chatify') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ url('/chatify') }}">
-                                    <i class="far fa-message fa-2x"></i>
-                                </a>
-                            </li>
-                            @can('update', Auth::user()->profile)
-                            <li class="nav-item px-2 {{ Route::is('post.create') ? 'active' : '' }}">
-                                <a class="nav-link" href="/p/create">
-                                    <i class="far fa-add fa-2x"></i>
-                                </a>
-                            </li>
-                        @endcan
-                            {{-- <li class="nav-item px-2 ">
-                                <a class="nav-link" href="#">
-                                    <i class="far fa-heart fa-2x"></i>
-                                </a>
-                            </li> --}}
-                            <li class="nav-item pl-2">
-                                <a href="/profile/{{ Auth::user()->username }}" class="nav-link"
-                                    style="width: 42px; height: 22px; padding-top: 6px;">
-                                    <img src="{{ asset(Auth::user()->profile->getProfileImage()) }}"
-                                        class="rounded-circle w-100">
-                                    {{-- <i class="far fa-user fa-2x"></i> --}}
-                                </a>
-                            </li>
+                        <div ModalContent
+                            class="h-[400px] bg-white absolute hidden Modal-ScaleOut-Center rounded-2xl shadow-2xl min-h-[400px] sm:h-[450px] md:h-[500px] lg:h-[600px]">
+                            <form action="/p/" class="h-[100%]" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div ModalHeader
+                                    class="flex justify-between items-center text-lg h-12 px-4 font-semibold border-b border-[#DBDBDB]">
+                                    <span onclick="onClkToggleCreatePost()">
+                                        <i
+                                            class="fa-solid fa-xmark transition-all hover:text-black hover:scale-110"></i>
+                                    </span>
 
-                            <!-- Add more dropdown in Profile Page -->
-                            <!-- To get current routedd(Route::currentRouteName())  -->
-                            {{-- @if (Route::is('profile.index')) --}}
+                                    <span class="text-[#121316]">Create New Post</span>
 
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre></a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-                                    @can('update', Auth::user()->profile)
-                                        <a class="dropdown-item" href="/p/create" role="button">
-                                            Add New Post
-                                        </a>
-                                    @endcan
-
-                                    @can('update', Auth::user()->profile)
-                                        <a class="dropdown-item" href="/stories/create" role="button">
-                                            Add New Story
-                                        </a>
-                                    @endcan
-
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        style="display: none;">
-                                        @csrf
-                                    </form>
+                                    <input type="submit"
+                                        class="text-blue-600 text-sm transition-all hover:scale-110 hover:text-blue-400"
+                                        value="Post">
                                 </div>
-                            </li>
-                            {{-- @endif --}}
 
-                        @endguest
-                    </ul>
+                                <div ModalBody class="h-[calc(100%_-_48px)] flex ">
+
+
+
+                                    <div class="flex flex-col items-center justify-center p-4">
+
+                                        <svg aria-label="Icon to represent media such as images or videos"
+                                            class="_ab6-" color="#262626" fill="#262626" height="77" role="img"
+                                            viewBox="0 0 97.6 77.3" width="96">
+                                            <path
+                                                d="M16.3 24h.3c2.8-.2 4.9-2.6 4.8-5.4-.2-2.8-2.6-4.9-5.4-4.8s-4.9 2.6-4.8 5.4c.1 2.7 2.4 4.8 5.1 4.8zm-2.4-7.2c.5-.6 1.3-1 2.1-1h.2c1.7 0 3.1 1.4 3.1 3.1 0 1.7-1.4 3.1-3.1 3.1-1.7 0-3.1-1.4-3.1-3.1 0-.8.3-1.5.8-2.1z"
+                                                fill="currentColor"></path>
+                                            <path
+                                                d="M84.7 18.4 58 16.9l-.2-3c-.3-5.7-5.2-10.1-11-9.8L12.9 6c-5.7.3-10.1 5.3-9.8 11L5 51v.8c.7 5.2 5.1 9.1 10.3 9.1h.6l21.7-1.2v.6c-.3 5.7 4 10.7 9.8 11l34 2h.6c5.5 0 10.1-4.3 10.4-9.8l2-34c.4-5.8-4-10.7-9.7-11.1zM7.2 10.8C8.7 9.1 10.8 8.1 13 8l34-1.9c4.6-.3 8.6 3.3 8.9 7.9l.2 2.8-5.3-.3c-5.7-.3-10.7 4-11 9.8l-.6 9.5-9.5 10.7c-.2.3-.6.4-1 .5-.4 0-.7-.1-1-.4l-7.8-7c-1.4-1.3-3.5-1.1-4.8.3L7 49 5.2 17c-.2-2.3.6-4.5 2-6.2zm8.7 48c-4.3.2-8.1-2.8-8.8-7.1l9.4-10.5c.2-.3.6-.4 1-.5.4 0 .7.1 1 .4l7.8 7c.7.6 1.6.9 2.5.9.9 0 1.7-.5 2.3-1.1l7.8-8.8-1.1 18.6-21.9 1.1zm76.5-29.5-2 34c-.3 4.6-4.3 8.2-8.9 7.9l-34-2c-4.6-.3-8.2-4.3-7.9-8.9l2-34c.3-4.4 3.9-7.9 8.4-7.9h.5l34 2c4.7.3 8.2 4.3 7.9 8.9z"
+                                                fill="currentColor"></path>
+                                            <path
+                                                d="M78.2 41.6 61.3 30.5c-2.1-1.4-4.9-.8-6.2 1.3-.4.7-.7 1.4-.7 2.2l-1.2 20.1c-.1 2.5 1.7 4.6 4.2 4.8h.3c.7 0 1.4-.2 2-.5l18-9c2.2-1.1 3.1-3.8 2-6-.4-.7-.9-1.3-1.5-1.8zm-1.4 6-18 9c-.4.2-.8.3-1.3.3-.4 0-.9-.2-1.2-.4-.7-.5-1.2-1.3-1.1-2.2l1.2-20.1c.1-.9.6-1.7 1.4-2.1.8-.4 1.7-.3 2.5.1L77 43.3c1.2.8 1.5 2.3.7 3.4-.2.4-.5.7-.9.9z"
+                                                fill="currentColor"></path>
+                                        </svg>
+
+                                        <label for="image"></label>
+
+                                        <div class="custom-file">
+                                            <input type="file"
+                                                class="custom-file-input @error('video') is-invalid @enderror"
+                                                name="video" id="image">
+                                            <label class="custom-file-label"
+                                                for="video">{{ old('video') ?? 'Select File...' }}</label>
+
+                                            @error('video')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <div class="border-l border-[#DBDBDB] p-4">
+                                        <div class="flex gap-2 items-center">
+                                            <img class="rounded-full h-[30px] w-[30px]" src="{{ asset(Auth::user()->profile->getProfileImage()) }}">
+                                            <span class="text-xs font-semibold">{{Auth::user()->username}}</span>
+                                        </div>
+
+                                        <div class="mt-4">
+                                            <textarea
+                                                class="caption w-full h-[120px] border-0 p-2 focus:outline-none !shadow-sm focus:!border-0 bg-[#e7e7e7] rounded-md resize-none"
+                                                name="caption" placeholder="Write a caption.."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <button class="h-[60px] bg-transparent b-0  p-0 cursor-pointer text-inherit"
+                        onclick="location.href = '/chatify';">
+                        <span>
+                            <i class="uil uil-location-arrow">
+                                <em></em>
+                            </i>
+                            <span>Messages</span>
+                        </span>
+                    </button>
+                    <button class="h-[60px] bg-transparent b-0  p-0 cursor-pointer text-inherit">
+                        <span>
+                            <i class="uil uil-heart">
+                                <em></em>
+                            </i>
+                            <span>Notifications</span>
+                        </span>
+                    </button>
+                    <button class="h-[60px] bg-transparent b-0  p-0 cursor-pointer text-inherit"
+                        onclick="location.href = '/profile/{{ Auth::user()->username }}';">
+                        <span>
+                            <img class="rounded-full object-cover"
+                                src="{{ asset(Auth::user()->profile->getProfileImage()) }}" />
+                            <span>Profile</span>
+                        </span>
+                    </button>
+                    <button class="relative h-[60px] bg-transparent b-0 p-0 mt-auto cursor-pointer text-inherit"
+                        onclick="onClkMoreActionBtn()">
+
+                        <div id="Modal"
+                            class="modal-shadow bg-gray-50 absolute bottom-16 rounded-md Modal-Slide-Down">
+                            <ul>
+                                <li>
+                                    <a href="#"
+                                        class="flex items-center justify-between px-3 py-[0.4rem] text-base font-normal text-gray-900 bg-gray-50 hover:bg-gray-100 group hover:shadow border-b no-underline">
+                                        <p class="ml-3 mr-4 whitespace-nowrap">Settings</p>
+                                        <p class="uil uil-setting text-[24px]"></p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="flex items-center justify-between px-3 py-[0.4rem] text-base font-normal text-gray-900 bg-gray-50 hover:bg-gray-100 group hover:shadow border-b no-underline">
+                                        <p class="ml-3 mr-4 whitespace-nowrap">Saved</p>
+                                        <p class="uil uil-bookmark text-[24px]"></p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="flex items-center justify-between px-3 py-[0.4rem] text-base font-normal text-gray-900 bg-gray-50 hover:bg-gray-100 group hover:shadow border-b no-underline">
+                                        <p class="ml-3 mr-4 whitespace-nowrap">Switch appearance</p>
+                                        <p class="uil uil-moon text-[24px]"></p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="flex items-center justify-between px-3 py-[0.4rem] text-base font-normal text-gray-900 bg-gray-50 hover:bg-gray-100 group hover:shadow border-b no-underline">
+                                        <p class="ml-3 mr-4 whitespace-nowrap">Your activiy</p>
+                                        <p class="uil uil-clock text-[24px]"></p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="flex items-center justify-between px-3 py-[0.4rem] text-base font-normal text-gray-900 bg-gray-50 hover:bg-gray-100 group hover:shadow border-b no-underline">
+                                        <p class="ml-3 mr-4 whitespace-nowrap">Report a problem</p>
+                                        <p class="uil uil-bug text-[24px]"></p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="flex items-center px-3 py-[0.4rem] text-base font-normal text-gray-900 bg-gray-50 hover:bg-gray-100 group hover:shadow border-b no-underline">
+                                        <p class="ml-3 mr-4 whitespace-nowrap">Switch accounts</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();"
+                                        class="flex items-center px-3 py-[0.4rem] text-base font-normal text-gray-900 bg-gray-50 hover:bg-gray-100 group hover:shadow border-b no-underline">
+                                        <p class="ml-3 mr-4 whitespace-nowrap">Log out</p>
+                                    </a>
+                                </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </ul>
+                        </div>
+
+                        <span>
+                            <i class="uil uil-bars"> </i>
+                            <span>More</span>
+                        </span>
+
+                    </button>
+                </nav>
+            </div>
+
+            <div
+                class="searchbar hide-searchBar fixed rounded-r-2xl h-full transition-all border-r bg-white translate-x-[4.5rem] z-10">
+
+                <div class="py-7 space-y-7 px-3">
+                    <span class="text-xl px-3  font-semibold block">Search</span>
+
+                    <input class="input" placeholder="search" name="q" type="search">
+
+                </div>
+
+                <hr>
+
+                <div class="flex justify-between px-5 my-3 font-semibold">
+
+                    <span>Recent</span>
+                    <span class="text-blue-500">Clear all</span>
+                </div>
+
+                <div class="box">
+
                 </div>
             </div>
-        </nav>
 
-        <!-- Content section -->
-        <div class="pt-3 mt-5">
-            @yield('content')
         </div>
 
+        <div class="relative z-0">
+            @yield('content')
+        </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+        integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(document).ready(function() {
+            var noBio = "No bio available";
+            $('.input').on('keyup', function() {
+                let token = $('meta[name="csrf-token"]').attr('content');
+                var value = $(this).val();
+                $.ajax({
+                    type: 'post',
+                    url: '/search',
+                    dataType: 'json',
+                    data: {
+                        _token: token,
+                        q: value
+                    },
+                    success: function(data) {
+                        if (data.length > 0) {
+                            $('.box').html('');
+                            $.each(data, function(key, value) {
+                                $('.box').append(
+                                    '<div class="list">' +
+                                    '<div class="imgBx">' +
+                                    '<img src="' + value.image_path +
+                                    '" alt="" class="user_profile_img">' +
+                                    '</div>' +
+                                    '<div class="content">' +
+                                    '<h2 class="rank"><small>#</small>' + (key+1) +
+                                    '</h2>' +
+                                    '<h3>' + value.name + '</h3>' +
+                                    '<p>' + (value.profile.bio ? value.profile.bio :
+                                        noBio) + '</p>' +
+                                    '</div>' +
+                                    '</div>'
+                                );
+
+                            });
+
+                        } else {
+                            $('.box').html('<p class="text-center">No result found</p>');
+                        }
+                    },
+                    error: function(data) {
+                        console.log("error: ", data);
+                    }
+                });
+            })
+        })
+    </script>
     @yield('exscript')
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
 </body>
 

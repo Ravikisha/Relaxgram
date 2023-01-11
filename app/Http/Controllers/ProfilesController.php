@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
@@ -97,8 +98,14 @@ class ProfilesController extends Controller
     {
         $q = $request->input('q');
         $user = User::where('username', 'LIKE', '%' . $q . '%')->orWhere('email', 'LIKE', '%' . $q . '%')->get();
+        // $profile = Profile::where('user_id',$user->id);
+        foreach ($user as $person) {
+            $profile = Profile::where('user_id', $person->id)->first();
+            $person->profile = $profile;
+            $person->image_path = ($profile->image) ? "/storage/$profile->image" : "img/default.png";
+        }
         if (count($user) > 0)
-            return view('profiles.search')->withDetails($user)->withQuery($q);
-        return view('profiles.search')->withMessage('No results found.');
+            return response()->json($user);
+        return response()->json(['error' => 'No results found']);
     }
 }
