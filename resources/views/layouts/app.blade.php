@@ -35,17 +35,11 @@
 
 
 <body>
-    {{-- @php
-        if(isset($details)){
-            ddd($details);
-        }
-
-    @endphp --}}
-    <div class="containerr content" id="app">
+    <div id="app" class="containerr content">
         <div class="z-10">
             <div class="sidebar ">
                 <header class="sidebar-header">
-                    <img class="logo-img" src="{{ asset('demo-imgs/logo.svg') }}" />
+                    <img class="logo-img" src="{{ asset('img/logo_relax.png') }}" />
                     <i class="logo-icon uil uil-instagram"></i>
                 </header>
                 <nav>
@@ -188,55 +182,28 @@
                         onclick="onClkMoreActionBtn()">
 
                         <div id="Modal"
-                            class="modal-shadow bg-gray-50 absolute bottom-16 rounded-md Modal-Slide-Down">
+                            class="modal-shadow bg-gray-50 absolute bottom-16 right-[16px] md:right-[32px] rounded-md Modal-Slide-Down hidden">
                             <ul>
-                                <li>
-                                    <a href="#"
-                                        class="flex items-center justify-between px-3 py-[0.4rem] text-base font-normal text-gray-900 bg-gray-50 hover:bg-gray-100 group hover:shadow border-b no-underline">
-                                        <p class="ml-3 mr-4 whitespace-nowrap">Settings</p>
-                                        <p class="uil uil-setting text-[24px]"></p>
+                                <li class="px-10 py-2 border-b bg-[#fbfbfb] transition-all hover:shadow rounded-t-lg">
+                                    <a onclick="onClkToggleEditProfile()"
+                                        class="flex items-center justify-between text-[13px] font-light hover:font-semibold transition-all text-gray-900 no-underline">
+                                        <p class="whitespace-nowrap">Settings</p>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex items-center justify-between px-3 py-[0.4rem] text-base font-normal text-gray-900 bg-gray-50 hover:bg-gray-100 group hover:shadow border-b no-underline">
-                                        <p class="ml-3 mr-4 whitespace-nowrap">Saved</p>
-                                        <p class="uil uil-bookmark text-[24px]"></p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex items-center justify-between px-3 py-[0.4rem] text-base font-normal text-gray-900 bg-gray-50 hover:bg-gray-100 group hover:shadow border-b no-underline">
-                                        <p class="ml-3 mr-4 whitespace-nowrap">Switch appearance</p>
-                                        <p class="uil uil-moon text-[24px]"></p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex items-center justify-between px-3 py-[0.4rem] text-base font-normal text-gray-900 bg-gray-50 hover:bg-gray-100 group hover:shadow border-b no-underline">
-                                        <p class="ml-3 mr-4 whitespace-nowrap">Your activiy</p>
-                                        <p class="uil uil-clock text-[24px]"></p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex items-center justify-between px-3 py-[0.4rem] text-base font-normal text-gray-900 bg-gray-50 hover:bg-gray-100 group hover:shadow border-b no-underline">
-                                        <p class="ml-3 mr-4 whitespace-nowrap">Report a problem</p>
-                                        <p class="uil uil-bug text-[24px]"></p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex items-center px-3 py-[0.4rem] text-base font-normal text-gray-900 bg-gray-50 hover:bg-gray-100 group hover:shadow border-b no-underline">
-                                        <p class="ml-3 mr-4 whitespace-nowrap">Switch accounts</p>
-                                    </a>
-                                </li>
-                                <li>
+                                <li class="px-10 py-2 border-b bg-[#fbfbfb] transition-all hover:shadow rounded-t-lg">
                                     <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();"
-                                        class="flex items-center px-3 py-[0.4rem] text-base font-normal text-gray-900 bg-gray-50 hover:bg-gray-100 group hover:shadow border-b no-underline">
-                                        <p class="ml-3 mr-4 whitespace-nowrap">Log out</p>
+                                        class="flex items-center justify-between text-[13px] font-light hover:font-semibold transition-all text-gray-900 no-underline">
+                                        <p class="whitespace-nowrap">Swich Accounts</p>
+                                    </a>
+                                </li>
+                                <li class="px-10 py-2 border-b bg-[#fbfbfb] transition-all hover:shadow rounded-b-lg">
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();"
+                                        class="flex items-center justify-between text-[13px] font-light hover:font-semibold transition-all rounded-b-lg text-gray-900 no-underline">
+                                        <p class="whitespace-nowrap">Logout</p>
                                     </a>
                                 </li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -245,7 +212,6 @@
                                 </form>
                             </ul>
                         </div>
-
                         <span>
                             <i class="uil uil-bars"> </i>
                             <span>More</span>
@@ -321,7 +287,7 @@
                                     '</div>' +
                                     '<div class="content">' +
                                     '<h2 class="rank"><small>#</small>' + (key +
-                                    1) +
+                                        1) +
                                     '</h2>' +
                                     '<h3>' + value.name + '</h3>' +
                                     '<p>' + (value.profile.bio ? value.profile.bio :
