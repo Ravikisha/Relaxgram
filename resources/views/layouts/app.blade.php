@@ -41,7 +41,7 @@
         }
 
     @endphp --}}
-    <div class="containerr content">
+    <div class="containerr content" id="app">
         <div class="z-10">
             <div class="sidebar ">
                 <header class="sidebar-header">
@@ -143,8 +143,9 @@
 
                                     <div class="border-l border-[#DBDBDB] p-4">
                                         <div class="flex gap-2 items-center">
-                                            <img class="rounded-full h-[30px] w-[30px]" src="{{ asset(Auth::user()->profile->getProfileImage()) }}">
-                                            <span class="text-xs font-semibold">{{Auth::user()->username}}</span>
+                                            <img class="rounded-full h-[30px] w-[30px]"
+                                                src="{{ asset(Auth::user()->profile->getProfileImage()) }}">
+                                            <span class="text-xs font-semibold">{{ Auth::user()->username }}</span>
                                         </div>
 
                                         <div class="mt-4">
@@ -232,13 +233,14 @@
                                 </li>
                                 <li>
                                     <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
+                                        onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();"
                                         class="flex items-center px-3 py-[0.4rem] text-base font-normal text-gray-900 bg-gray-50 hover:bg-gray-100 group hover:shadow border-b no-underline">
                                         <p class="ml-3 mr-4 whitespace-nowrap">Log out</p>
                                     </a>
                                 </li>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
                                     @csrf
                                 </form>
                             </ul>
@@ -311,19 +313,21 @@
                             $('.box').html('');
                             $.each(data, function(key, value) {
                                 $('.box').append(
-                                    '<div class="list">' +
+                                    '<a href="/profile/' + value.username +
+                                    '" class="list">' +
                                     '<div class="imgBx">' +
                                     '<img src="' + value.image_path +
                                     '" alt="" class="user_profile_img">' +
                                     '</div>' +
                                     '<div class="content">' +
-                                    '<h2 class="rank"><small>#</small>' + (key+1) +
+                                    '<h2 class="rank"><small>#</small>' + (key +
+                                    1) +
                                     '</h2>' +
                                     '<h3>' + value.name + '</h3>' +
                                     '<p>' + (value.profile.bio ? value.profile.bio :
                                         noBio) + '</p>' +
                                     '</div>' +
-                                    '</div>'
+                                    '</a>'
                                 );
 
                             });

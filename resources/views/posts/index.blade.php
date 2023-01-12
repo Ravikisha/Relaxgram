@@ -271,7 +271,7 @@
                                         </a>
                                         <small class="text-muted">New to Instagram </small>
                                     </div>
-                                    <a href="#" class='ml-auto text-info text-decoration-none'>
+                                    <a href="/profile/{{ $sugg_user->username }}" class='ml-auto text-info text-decoration-none'>
                                         Follow
                                     </a>
                                 </div>
