@@ -12,7 +12,7 @@
                         $state = false;
                     @endphp
 
-                    <div class="max-w-[500px] bg-white border rounded-md border-gray-300 shadow-md" id="prova">
+                    <div class="max-w-[500px] mx-auto bg-white border rounded-md border-gray-300 shadow-md" id="prova">
                         <!-- Card Header -->
                         <div class="card-header d-flex justify-content-between align-items-center bg-white pl-3 pr-1 py-2">
                             <div class="d-flex align-items-center">
@@ -30,16 +30,16 @@
                                     data-target="#PostActions{{ $post->id }}">
 
                                     <div id="PostActions{{ $post->id }}"
-                                        class="modal-shadow bg-white absolute right-[35px] z-10 !rounded-lg Modal-Slide-Down">
+                                        class="modal-shadow bg-white absolute right-[35px] z-10 !rounded-lg scale-out-ver-top">
                                         <ul>
                                             <li
-                                                class="px-2 py-2 border-b bg-[#fbfbfb] transition-all hover:shadow rounded-t-lg">
+                                                class="px-4 py-2 border-b bg-[#fbfbfb] transition-all hover:shadow rounded-t-lg">
                                                 <a href="#"
-                                                    class="flex items-center justify-between text-xs font-light hover:font-semibold transition-all text-gray-900 no-underline">
-                                                    <p class="ml-3 mr-4 whitespace-nowrap">Unfollow</p>
+                                                    class="items-center justify-between inline-flex text-xs font-light hover:font-semibold transition-all text-gray-900 no-underline">
+                                                    <p class="whitespace-nowrap">Unfollow</p>
                                                 </a>
                                             </li>
-                                            <li class="px-2 py-1 border-b bg-[#fbfbfb] transition-all hover:shadow">
+                                            <li class="px-4 py-2 border-b bg-[#fbfbfb] transition-all hover:shadow">
                                                 <form
                                                     action="{{ url()->action('App\Http\Controllers\PostsController@destroy', $post->id) }}"
                                                     method="POST">
@@ -50,10 +50,10 @@
                                                         type="submit" value="Delete">
                                                 </form>
                                             </li>
-                                            <li class="px-2 py-2 bg-[#fbfbfb] hover:shadow transition-all rounded-b-lg">
+                                            <li class="px-4 py-2 bg-[#fbfbfb] hover:shadow transition-all rounded-b-lg">
                                                 <a href="/p/{{ $post->id }}"
                                                     class="flex items-center justify-between text-xs font-light hover:font-semibold transition-all text-gray-900 no-underline">
-                                                    <p class="ml-3 mr-4 whitespace-nowrap">Go to post</p>
+                                                    <p class="whitespace-nowrap">Go to post</p>
                                                 </a>
                                             </li>
                                         </ul>

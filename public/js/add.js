@@ -4,8 +4,49 @@ const ModalBackground = document.querySelector('[ModalBackground]')
 const ModalContent = document.querySelector('[ModalContent]'),
     ModalHeader = document.querySelector('[ModalHeader]'),
     ModalBody = document.querySelector('[ModalBody]');
+
+const EditProfileContainer = document.querySelector('[EditProfileContainer]')
+const EditProfileBackground = document.querySelector('[EditProfileBackground]')
+const EditProfileContent = document.querySelector('[EditProfileContent]'),
+    EditProfileHeader = document.querySelector('[EditProfileHeader]'),
+    EditProfileBody = document.querySelector('[EditProfileBody]');
+
 var isCreatePostModalOpen = false;
 var isFirstTimeCreatePostModalOpen = false;
+
+var isEditProfileModalOpen = false;
+var isFirstTimeEditProfileModalOpen = false;
+
+let initialMoreActionsOpened = false;
+
+
+const openEditProfile = () => {
+    if (!isEditProfileModalOpen) {
+        if (!isFirstTimeEditProfileModalOpen) {
+            EditProfileContent.classList.remove('hidden')
+            isFirstTimeEditProfileModalOpen = true
+        }
+        EditProfileContent.classList.remove('Modal-ScaleOut-Center');
+        EditProfileBackground.classList.remove('invisible')
+        EditProfileBackground.classList.remove('opacity-0')
+        EditProfileContainer.classList.add('EditProfileContainer')
+        EditProfileContent.classList.add('Modal-ScaleIn-Center');
+        isEditProfileModalOpen = true;
+    }
+}
+
+const closeEditProfile = () => {
+    if (isEditProfileModalOpen) {
+        EditProfileContent.classList.remove('Modal-ScaleIn-Center')
+        EditProfileContent.classList.add('Modal-ScaleOut-Center')
+        setTimeout(() => {
+            EditProfileContainer.classList.remove('EditProfileContainer')
+        }, 200);
+        EditProfileBackground.classList.add('invisible')
+        EditProfileBackground.classList.add('opacity-0')
+        isEditProfileModalOpen = false;
+    }
+}
 
 const openCreatePost = () => {
     if (!isCreatePostModalOpen) {
@@ -35,8 +76,15 @@ const closeCreatePost = () => {
     }
 }
 
+const onClkToggleEditProfile = () => {
+    if (!isEditProfileModalOpen) {
+        openEditProfile();
+        return
+    }
+    closeEditProfile();
+}
+
 const onClkToggleCreatePost = () => {
-    console.log('click')
     if (!isCreatePostModalOpen) {
         openCreatePost();
         return
@@ -76,6 +124,10 @@ const closeSearchBar = () => {
 
 const openMoreActions = () => {
     if (!isModalOpen) {
+        if (!initialMoreActionsOpened) {
+            Modal.classList.remove('hidden')
+            initialMoreActionsOpened = true;
+        }
         Modal.classList.remove('Modal-Slide-Down')
         Modal.classList.add('Modal-Slide-Up')
         isModalOpen = true;
@@ -170,16 +222,17 @@ PostActionsBtns.forEach(element => {
 
         const openPostActions = () => {
             if (!isPostActionModalOpen) {
-                trigger.classList.remove('Modal-Slide-Down')
-                trigger.classList.add('Modal-Slide-Up')
+                trigger.classList.remove('scale-out-ver-top')
+                trigger.classList.add('scale-in-ver-top')
+
                 isPostActionModalOpen = true;
             }
         }
 
         const closePostActions = () => {
             if (isPostActionModalOpen) {
-                trigger.classList.add('Modal-Slide-Down')
-                trigger.classList.remove('Modal-Slide-Up')
+                trigger.classList.add('scale-out-ver-top')
+                trigger.classList.remove('scale-in-ver-top')
                 isPostActionModalOpen = false;
             }
         }
