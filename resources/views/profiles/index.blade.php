@@ -72,7 +72,7 @@
                     <div class="border">
                         <a class="relative min-h-[300px w-[300px] h-[300px] sm:h-[300px] sm:w-[300px]"
                             href="/p/{{ $post->id }}">
-                            <img class="object-contain w-full h-full" src="{{ asset("storage/$post->image") }}">
+                            <img class="object-cover w-full h-full" src="{{ asset("storage/$post->image") }}">
                             <div
                                 class="absolute group inset-0 transtion-all bg-black bg-opacity-0 hover:bg-opacity-30 flex justify-center items-center gap-3">
                                 <span class="hidden group-hover:flex like text-white items-center gap-2">
