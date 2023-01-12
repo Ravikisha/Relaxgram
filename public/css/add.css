@@ -1,5 +1,5 @@
-sidebar-reducer .sidebar {
-    width: 72px;
+.sidebar-reducer .sidebar {
+    width: 72px !important;
 }
 
 .sidebar-reducer .sidebar button span {
@@ -66,20 +66,7 @@ sidebar-reducer .sidebar {
 
 /*# sourceMappingURL=custom.css.map */
 
-@media screen and (max-width: 768px) {
 
-    .sidebar{
-        z-index: 20;
-    }
-    .sidebar-reducer .sidebar {
-        width: 100%;
-    }
-
-    .visible-searchBar{
-        transform: translate(0px, 0px) !important;
-        width: 100% !important;
-    }
-}
 
 .modal-shadow {
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -485,7 +472,7 @@ sidebar-reducer .sidebar {
 .containerr {
     position: relative;
     display: grid;
-    grid-template-columns: 0.4fr 1fr;
+    grid-template-columns: 0.1fr 1fr;
     grid-template-rows: 1fr;
     gap: 0px 0px;
     grid-auto-flow: row;
@@ -493,9 +480,21 @@ sidebar-reducer .sidebar {
         ". .";
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 767px) {
     .containerr {
-        grid-template-columns: 0.12fr 1fr;
+        grid-template-columns: 0.1fr 1fr !important;
+    }
+}
+
+@media screen and (width > 1023px) {
+    .containerr {
+        grid-template-columns: 0.3fr 1fr !important;
+    }
+}
+
+@media screen and (width > 1279px) {
+    .containerr {
+        grid-template-columns: 0.2fr 1fr !important;
     }
 }
 
@@ -516,4 +515,73 @@ sidebar-reducer .sidebar {
     align-items: center;
 }
 
+.EditProfileContainer{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+
+@media screen and (max-width: 768px) {
+
+    .sidebar{
+        z-index: 20;
+    }
+    .sidebar-reducer .sidebar {
+        width: 100% !important;
+    }
+
+    .visible-searchBar{
+        transform: translate(0px, 0px) !important;
+        width: 100% !important;
+    }
+}
+
+
+.scale-in-ver-top {
+    transform-origin: top;
+    animation: scale-in-ver-top 0.2s both;
+}
+
+.scale-out-ver-top {
+    transform-origin: top;
+    animation: scale-out-ver-top 0.2s both;
+}
+
+@keyframes scale-in-ver-top {
+    0% {
+        scale: 0 0.005;
+        display: flex;
+    }
+
+    33% {
+        scale: 1 0.005;
+    }
+
+    66%,
+    100% {
+        scale: 1 1;
+    }
+}
+
+
+@keyframes scale-out-ver-top {
+    0% {
+        scale: 1 1;
+    }
+
+    33% {
+        scale: 1 0.005;
+    }
+
+    66%,
+    100% {
+        scale: 0 0;
+        display: none;
+    }
+}
