@@ -162,12 +162,11 @@
                             <span>Messages</span>
                         </span>
                     </button>
-                    <button class="h-[60px] bg-transparent b-0  p-0 cursor-pointer text-inherit">
+                    <button class="h-[60px] bg-transparent b-0  p-0 cursor-pointer text-inherit" onclick="location.href = '/stories/create';">
                         <span>
-                            <i class="uil uil-heart">
-                                <em></em>
+                            <i class="uil uil-book">
                             </i>
-                            <span>Notifications</span>
+                            <span>Story</span>
                         </span>
                     </button>
                     <button class="h-[60px] bg-transparent b-0  p-0 cursor-pointer text-inherit"
