@@ -1,3 +1,68 @@
+# Project Work @2023
+<hr>
+## Team
+    - Ravi Kishan
+    - Pawan Gupta
+    - Divya
+    - Shivani Yadav
+
+
+## Project Description
+This is a project submitted for a collage project work. It is a basically a social media application clone (Instagram clone). It is a web application which is developed using Laravel framework. It is a social media application where users can share their photos and videos. Users can follow other users and can like and comment on their posts. Users can also chat with other users. It is a full stack application.
+
+## Project Features
+- User can register and login with email verification.
+- Realtime chat application.
+- Post and story create
+- Follow and unfollow users
+- Like and comment on posts
+- Search users
+- Profile page
+
+## Project Setup
+- Clone the project
+- Cd into the project directory
+- `composer install`
+- `npm install`
+- create a `.env` file and copy the content of `.env.example` file
+- run `php artisan key:generate`
+- after that run `php artisan migrate`
+- Run `php artisan serve` to start the server
+- In other window run `npm run dev` to compile the assets
+- go to `http://localhost:8000` to see the project
+
+## Project Screenshots
+![Screenshot (1)](./documentation/screenshots/chat-setting-view.PNG)
+![Screenshot (2)](./documentation/screenshots/chat-view.PNG)
+![Screenshot (3)](./documentation/screenshots/chat-view2.PNG)
+![Screenshot (4)](./documentation/screenshots/comment-view.PNG)
+![Screenshot (5)](./documentation/screenshots/email-verification-view.PNG)
+![Screenshot (6)](./documentation/screenshots/follow-view.PNG)
+![Screenshot (7)](./documentation/screenshots/like_and_comment.PNG)
+![Screenshot (8)](./documentation/screenshots/login-page.PNG)
+![Screenshot (9)](./documentation/screenshots/post-create-view.PNG)
+![Screenshot (10)](./documentation/screenshots/post-show-view.PNG)
+![Screenshot (11)](./documentation/screenshots/post-view.PNG)
+![Screenshot (12)](./documentation/screenshots/profile-view.PNG)
+![Screenshot (13)](./documentation/screenshots/register-page.PNG)
+![Screenshot (14)](./documentation/screenshots/reset-password-page.PNG)
+![Screenshot (15)](./documentation/screenshots/resetpasswordemail-png.PNG)
+![Screenshot (16)](./documentation/screenshots/chat-section.PNG)
+![Screenshot (17)](./documentation/screenshots/search-user-view.PNG)
+![Screenshot (18)](./documentation/screenshots/story-create-view.PNG)
+![Screenshot (19)](./documentation/screenshots/story-view.PNG)
+![Screenshot (20)](./documentation/02.PNG)
+![Screenshot (21)](./documentation/database_table.PNG)
+
+
+
+## Project Details More
+- go to `documentation` folder to see the project details
+- For More enquiry contact me at `@Ravikisha`
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -64,3 +129,5 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
