@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container">
-
         @if(isset($details))
             <h3>Search results for : <b>{{ $query }} </b></h3>
             <!-- User Component -->

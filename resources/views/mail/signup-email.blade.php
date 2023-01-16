@@ -16,10 +16,12 @@
     <!--<![endif]-->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style type="text/css">
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-    *{
-        font-family: 'Poppins', sans-serif;
-    }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
         #outlook a {
             padding: 0;
         }
@@ -134,57 +136,8 @@
                 text-decoration: underline;
             }
         </style>
-        <div style="margin:0px auto;max-width:640px;background:transparent;">
-            <table role="presentation" cellpadding="0" cellspacing="0"
-                style="font-size:0px;width:100%;background:transparent;" align="center" border="0">
-                <tbody>
-                    <tr>
-                        <td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:40px 0px;">
-                            <!--[if mso | IE]>
-      <table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:top;width:640px;">
-      <![endif]-->
-                            <div aria-labelledby="mj-column-per-100" class="mj-column-per-100 outlook-group-fix"
-                                style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
-                                <table role="presentation" cellpadding="0" cellspacing="0" width="100%"
-                                    border="0">
-                                    <tbody>
-                                        <tr>
-                                            <td style="word-break:break-word;font-size:0px;padding:0px;" align="center">
-                                                <table role="presentation" cellpadding="0" cellspacing="0"
-                                                    style="border-collapse:collapse;border-spacing:0px;" align="center"
-                                                    border="0">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td style="width:138px;"><a href="https://discordapp.com/"
-                                                                    target="_blank"><img alt="" title=""
-                                                                        height="38px"
-                                                                        src="https://cdn.discordapp.com/email_assets/2ec94ed90b8e95d764f2a1c96f33139e.png"
-                                                                        style="border:none;border-radius:;display:block;outline:none;text-decoration:none;width:100%;height:38px;"
-                                                                        width="138"></a></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!--[if mso | IE]>
-      </td></tr></table>
-      <![endif]-->
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <!--[if mso | IE]>
-      </td></tr></table>
-      <![endif]-->
-        <!--[if mso | IE]>
-      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="640" align="center" style="width:640px;">
-        <tr>
-          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
+
+
         <div
             style="max-width:640px;margin:0 auto;box-shadow:0px 1px 5px rgba(0,0,0,0.1);border-radius:4px;overflow:hidden">
             <div
@@ -266,18 +219,19 @@
                                                 <td style="word-break:break-word;font-size:0px;padding:10px 25px;"
                                                     align="center">
                                                     <table role="presentation" cellpadding="0" cellspacing="0"
-                                                        style="border-collapse:separate;" align="center"
-                                                        border="0">
+                                                        style="border-collapse:separate;" align="center" border="0">
                                                         <tbody>
                                                             <tr>
                                                                 <td style="border:none;border-radius:3px;color:white;cursor:auto;padding:15px 19px;"
                                                                     align="center" valign="middle" bgcolor="#7289DA">
-                                                                    <a href="{{ env('APP_URL2') . 'verify?code=' . $email_data['verification_code'] }}" style="text-decoration:none;line-height:100%;background:#7289DA;color:white;font-family:Ubuntu,
+                                                                    <a href="{{ env('APP_URL2') . 'verify?code=' . $email_data['verification_code'] }}"
+                                                                        style="text-decoration:none;line-height:100%;background:#7289DA;color:white;font-family:Ubuntu,
                                                                         Helvetica, Arial,
                                                                         sans-serif;font-size:15px;font-weight:normal;text-transform:none;margin:0px;"
                                                                         target="_blank">
                                                                         Verify Email
-                                                                    </a></td>
+                                                                    </a>
+                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -369,7 +323,8 @@
                                                 align="center">
                                                 <div
                                                     style="cursor:auto;color:#737F8D;font-family:Whitney, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;font-size:16px;line-height:22px;text-align:center;">
-                                                    “Sometimes it is the people no one imagines anything of who do the things that no-one can imagine.”
+                                                    “Sometimes it is the people no one imagines anything of who do the
+                                                    things that no-one can imagine.”
                                                 </div>
                                             </td>
                                         </tr>
@@ -413,8 +368,8 @@
                                                     style="cursor:auto;color:#99AAB5;font-family:Whitney, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;font-size:12px;line-height:24px;text-align:center;">
                                                     Sent by Relax • <a href="https://prestigegwl.org/"
                                                         style="color:#1EB0F4;text-decoration:none;"
-                                                        target="_blank">check this out</a> • <a
-                                                        href="https://ravikishan.me/"
+                                                        target="_blank">check
+                                                        this out</a> • <a href="https://ravikishan.me/"
                                                         style="color:#1EB0F4;text-decoration:none;"
                                                         target="_blank">@RaviKishan</a>
                                                 </div>
