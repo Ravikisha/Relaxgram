@@ -1,10 +1,11 @@
 # Project Work @2023
 <hr>
+
 ## Team
-    - Ravi Kishan
-    - Pawan Gupta
-    - Divya
-    - Shivani Yadav
+- Ravi Kishan
+- Pawan Gupta
+- Divya
+- Shivani Yadav
 
 
 ## Project Description
@@ -31,28 +32,102 @@ This is a project submitted for a collage project work. It is a basically a soci
 - In other window run `npm run dev` to compile the assets
 - go to `http://localhost:8000` to see the project
 
+## Project Requirements
+- Pusher
+- MailServer (MailTrap)
+- FFmpeg
+- Mysql
+- PHP ^7.4
+- Node ^12.0
+- NPM ^6.0
+- Composer ^2.0
+- Laravel ^8.0
+
 ## Project Screenshots
 ![Screenshot (1)](./documentation/screenshots/chat-setting-view.PNG)
+
+<hr>
+
 ![Screenshot (2)](./documentation/screenshots/chat-view.PNG)
+
+<hr>
+
 ![Screenshot (3)](./documentation/screenshots/chat-view2.PNG)
+
+<hr>
+
 ![Screenshot (4)](./documentation/screenshots/comment-view.PNG)
+
+<hr>
+
 ![Screenshot (5)](./documentation/screenshots/email-verification-view.PNG)
+
+<hr>
+
 ![Screenshot (6)](./documentation/screenshots/follow-view.PNG)
+
+<hr>
+
 ![Screenshot (7)](./documentation/screenshots/like_and_comment.PNG)
+
+<hr>
+
 ![Screenshot (8)](./documentation/screenshots/login-page.PNG)
+
+<hr>
+
 ![Screenshot (9)](./documentation/screenshots/post-create-view.PNG)
+
+<hr>
+
 ![Screenshot (10)](./documentation/screenshots/post-show-view.PNG)
+
+<hr>
+
 ![Screenshot (11)](./documentation/screenshots/post-view.PNG)
+
+<hr>
+
 ![Screenshot (12)](./documentation/screenshots/profile-view.PNG)
+
+<hr>
+
 ![Screenshot (13)](./documentation/screenshots/register-page.PNG)
+
+<hr>
+
 ![Screenshot (14)](./documentation/screenshots/reset-password-page.PNG)
+
+<hr>
+
 ![Screenshot (15)](./documentation/screenshots/resetpasswordemail-png.PNG)
+
+<hr>
+
 ![Screenshot (16)](./documentation/screenshots/chat-section.PNG)
+
+<hr>
+
 ![Screenshot (17)](./documentation/screenshots/search-user-view.PNG)
+
+<hr>
+
 ![Screenshot (18)](./documentation/screenshots/story-create-view.PNG)
+
+<hr>
+
 ![Screenshot (19)](./documentation/screenshots/story-view.PNG)
+
+<hr>
+
 ![Screenshot (20)](./documentation/02.PNG)
+
+<hr>
+
 ![Screenshot (21)](./documentation/database_table.PNG)
+
+<hr>
+
 
 
 
