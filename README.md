@@ -61,67 +61,67 @@ To run this project on your local machine, follow these steps:
 ## Project Screenshots 📷
 Here are some screenshots to give you a glimpse of "Relaxgram":
 
-![Screenshot (1)](./documentation/screenshots/chat-setting-view.PNG)
+![Screenshot (1)](./documentation/screenshots/chat-setting-view.png)
 *Chat Settings View*
 
-![Screenshot (2)](./documentation/screenshots/chat-view.PNG)
+![Screenshot (2)](./documentation/screenshots/chat-view.png)
 *Chat View*
 
-![Screenshot (3)](./documentation/screenshots/chat-view2.PNG)
+![Screenshot (3)](./documentation/screenshots/chat-view2.png)
 *Chat View (2)*
 
-![Screenshot (4)](./documentation/screenshots/comment-view.PNG)
+![Screenshot (4)](./documentation/screenshots/comment-view.png)
 *Comment View*
 
-![Screenshot (5)](./documentation/screenshots/email-verification-view.PNG)
+![Screenshot (5)](./documentation/screenshots/email-verification-view.png)
 *Email Verification View*
 
-![Screenshot (6)](./documentation/screenshots/follow-view.PNG)
+![Screenshot (6)](./documentation/screenshots/follow-view.png)
 *Follow and Unfollow View*
 
-![Screenshot (7)](./documentation/screenshots/like_and_comment.PNG)
+![Screenshot (7)](./documentation/screenshots/like_and_comment.png)
 *Like and Comment*
 
-![Screenshot (8)](./documentation/screenshots/login-page.PNG)
+![Screenshot (8)](./documentation/screenshots/login-page.png)
 *Login Page*
 
-![Screenshot (9)](./documentation/screenshots/post-create-view.PNG)
+![Screenshot (9)](./documentation/screenshots/post-create-view.png)
 *Post Creation View*
 
-![Screenshot (10)](./documentation/screenshots/post-show-view.PNG)
+![Screenshot (10)](./documentation/screenshots/post-show-view.png)
 *Post Show View*
 
-![Screenshot (11)](./documentation/screenshots/post-view.PNG)
+![Screenshot (11)](./documentation/screenshots/post-view.png)
 *Post View*
 
-![Screenshot (12)](./documentation/screenshots/profile-view.PNG)
+![Screenshot (12)](./documentation/screenshots/profile-view.png)
 *Profile View*
 
-![Screenshot (13)](./documentation/screenshots/register-page.PNG)
+![Screenshot (13)](./documentation/screenshots/register-page.png)
 *Register Page*
 
-![Screenshot (14)](./documentation/screenshots/reset-password-page.PNG)
+![Screenshot (14)](./documentation/screenshots/reset-password-page.png)
 *Reset Password Page*
 
-![Screenshot (15)](./documentation/screenshots/resetpasswordemail-png.PNG)
+![Screenshot (15)](./documentation/screenshots/resetpasswordemail-png.png)
 *Reset Password Email*
 
-![Screenshot (16)](./documentation/screenshots/chat-section.PNG)
+![Screenshot (16)](./documentation/screenshots/chat-section.png)
 *Chat Section*
 
-![Screenshot (17)](./documentation/screenshots/search-user-view.PNG)
+![Screenshot (17)](./documentation/screenshots/search-user-view.png)
 *Search User View*
 
-![Screenshot (18)](./documentation/screenshots/story-create-view.PNG)
+![Screenshot (18)](./documentation/screenshots/story-create-view.png)
 *Story Creation View*
 
-![Screenshot (19)](./documentation/screenshots/story-view.PNG)
+![Screenshot (19)](./documentation/screenshots/story-view.png)
 *Story View*
 
-![Screenshot (20)](./documentation/02.PNG)
+![Screenshot (20)](./documentation/02.png)
 *Additional Screenshot*
 
-![Screenshot (21)](./documentation/database_table.PNG)
+![Screenshot (21)](./documentation/database_table.png)
 *Database Table Screenshot*
 
 ## Project Details 📖
