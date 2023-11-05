@@ -1,208 +1,158 @@
-# Project Work @2023
-<hr>
+# Relaxgram - A Social Media Clone 🚀🌟 
 
-## Team
-- Ravi Kishan
+## Team Members 🧑‍🤝‍🧑
+<!-- - Ravi Kishan
 - Pawan Gupta
 - Divya
-- Shivani Yadav
-
-
-## Project Description
-This is a project submitted for a collage project work. It is a basically a social media application clone (Instagram clone). It is a web application which is developed using Laravel framework. It is a social media application where users can share their photos and videos. Users can follow other users and can like and comment on their posts. Users can also chat with other users. It is a full stack application.
-
-## Project Features
-- User can register and login with email verification.
-- Realtime chat application.
-- Post and story create
-- Follow and unfollow users
-- Like and comment on posts
-- Search users
-- Profile page
-
-## Project Setup
-- Clone the project
-- Cd into the project directory
-- `composer install`
-- `npm install`
-- create a `.env` file and copy the content of `.env.example` file
-- run `php artisan key:generate`
-- after that run `php artisan migrate`
-- Run `php artisan serve` to start the server
-- In other window run `npm run dev` to compile the assets
-- go to `http://localhost:8000` to see the project
-
-## Project Requirements
-- Pusher
-- MailServer (MailTrap)
-- FFmpeg
-- Mysql
-- PHP ^7.4
-- Node ^12.0
-- NPM ^6.0
-- Composer ^2.0
-- Laravel ^8.0
-
-## Project Screenshots
-![Screenshot (1)](./documentation/screenshots/chat-setting-view.PNG)
-
-<hr>
-
-![Screenshot (2)](./documentation/screenshots/chat-view.PNG)
-
-<hr>
-
-![Screenshot (3)](./documentation/screenshots/chat-view2.PNG)
-
-<hr>
-
-![Screenshot (4)](./documentation/screenshots/comment-view.PNG)
-
-<hr>
-
-![Screenshot (5)](./documentation/screenshots/email-verification-view.PNG)
-
-<hr>
-
-![Screenshot (6)](./documentation/screenshots/follow-view.PNG)
-
-<hr>
-
-![Screenshot (7)](./documentation/screenshots/like_and_comment.PNG)
-
-<hr>
-
-![Screenshot (8)](./documentation/screenshots/login-page.PNG)
-
-<hr>
-
-![Screenshot (9)](./documentation/screenshots/post-create-view.PNG)
-
-<hr>
-
-![Screenshot (10)](./documentation/screenshots/post-show-view.PNG)
-
-<hr>
-
-![Screenshot (11)](./documentation/screenshots/post-view.PNG)
-
-<hr>
-
-![Screenshot (12)](./documentation/screenshots/profile-view.PNG)
-
-<hr>
-
-![Screenshot (13)](./documentation/screenshots/register-page.PNG)
-
-<hr>
-
-![Screenshot (14)](./documentation/screenshots/reset-password-page.PNG)
-
-<hr>
-
-![Screenshot (15)](./documentation/screenshots/resetpasswordemail-png.PNG)
-
-<hr>
-
-![Screenshot (16)](./documentation/screenshots/chat-section.PNG)
-
-<hr>
-
-![Screenshot (17)](./documentation/screenshots/search-user-view.PNG)
-
-<hr>
-
-![Screenshot (18)](./documentation/screenshots/story-create-view.PNG)
-
-<hr>
-
-![Screenshot (19)](./documentation/screenshots/story-view.PNG)
-
-<hr>
-
-![Screenshot (20)](./documentation/02.PNG)
-
-<hr>
-
-![Screenshot (21)](./documentation/database_table.PNG)
-
-<hr>
-
-
-
-
-## Project Details More
-- go to `documentation` folder to see the project details
-- For More enquiry contact me at `@Ravikisha`
-
-
-
-
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+- Shivani Yadav -->
+<p align="left">
+<a href="https://github.com/ravikisha">
+<img src="https://img.shields.io/badge/Ravi Kishan-ravikisha-blue">
+</a>
+<a href="https://github.com/shivani51yadav">
+<img src="https://img.shields.io/badge/Shivani Yadav-shivani51yadav-blueviolet">
+</a>
+</a>
+<a href="https://github.com/divcs">
+<img src="https://img.shields.io/badge/Divya-divcs-green">
+</a></a>
+<a href="https://github.com/Pawan13g">
+<img src="https://img.shields.io/badge/Pawan Gupta-Pawan13g-red">
+</a>
 </p>
 
-## About Laravel
+## Project Description 📝
+Welcome to "Relaxgram"! This project is the culmination of a collaborative effort by our dedicated team. It's a social media application clone, inspired by Instagram. Leveraging the Laravel framework, we've created a web-based social media platform for users to share photos and videos, follow others, like, comment, and engage in real-time chat. "Relaxgram" represents a full-stack application that showcases our skills and creativity.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Project Features 🚀
+Our social media clone boasts a rich set of features, including:
+- User registration and login with email verification.
+- Real-time chat functionality for seamless communication.
+- Ability to create and share posts and stories.
+- Follow/unfollow other users to build your network.
+- Like and comment on posts to express appreciation.
+- User search functionality to find and connect with friends.
+- Profile pages to showcase your posts and personal information.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Project Setup 🛠️
+To run this project on your local machine, follow these steps:
+1. Clone the project to your local environment.
+2. Navigate to the project directory.
+3. Run `composer install` to install PHP dependencies.
+4. Execute `npm install` to install JavaScript packages.
+5. Create a `.env` file in the project directory by copying the content from `.env.example`.
+6. Generate an application key using `php artisan key:generate`.
+7. Migrate the database using `php artisan migrate`.
+8. Start the server with `php artisan serve`.
+9. In another terminal window, run `npm run dev` to compile assets.
+10. Access the project at `http://localhost:8000`.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Project Requirements 📋
+- Pusher for real-time chat functionality.
+- A mail server (e.g., MailTrap) for email verification.
+- FFmpeg for multimedia processing.
+- MySQL as the database backend.
+- PHP version 7.4 or higher.
+- Node.js version 12.0 or higher.
+- NPM version 6.0 or higher.
+- Composer version 2.0 or higher.
+- Laravel version 8.0.
 
-## Learning Laravel
+## Project Screenshots 📷
+Here are some screenshots to give you a glimpse of "Relaxgram":
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+![Screenshot (1)](./documentation/screenshots/chat-setting-view.PNG)
+*Chat Settings View*
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+![Screenshot (2)](./documentation/screenshots/chat-view.PNG)
+*Chat View*
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+![Screenshot (3)](./documentation/screenshots/chat-view2.PNG)
+*Chat View (2)*
 
-## Laravel Sponsors
+![Screenshot (4)](./documentation/screenshots/comment-view.PNG)
+*Comment View*
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+![Screenshot (5)](./documentation/screenshots/email-verification-view.PNG)
+*Email Verification View*
 
-### Premium Partners
+![Screenshot (6)](./documentation/screenshots/follow-view.PNG)
+*Follow and Unfollow View*
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+![Screenshot (7)](./documentation/screenshots/like_and_comment.PNG)
+*Like and Comment*
 
-## Contributing
+![Screenshot (8)](./documentation/screenshots/login-page.PNG)
+*Login Page*
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+![Screenshot (9)](./documentation/screenshots/post-create-view.PNG)
+*Post Creation View*
 
-## Code of Conduct
+![Screenshot (10)](./documentation/screenshots/post-show-view.PNG)
+*Post Show View*
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+![Screenshot (11)](./documentation/screenshots/post-view.PNG)
+*Post View*
 
-## Security Vulnerabilities
+![Screenshot (12)](./documentation/screenshots/profile-view.PNG)
+*Profile View*
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+![Screenshot (13)](./documentation/screenshots/register-page.PNG)
+*Register Page*
 
-## License
+![Screenshot (14)](./documentation/screenshots/reset-password-page.PNG)
+*Reset Password Page*
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+![Screenshot (15)](./documentation/screenshots/resetpasswordemail-png.PNG)
+*Reset Password Email*
 
+![Screenshot (16)](./documentation/screenshots/chat-section.PNG)
+*Chat Section*
 
+![Screenshot (17)](./documentation/screenshots/search-user-view.PNG)
+*Search User View*
+
+![Screenshot (18)](./documentation/screenshots/story-create-view.PNG)
+*Story Creation View*
+
+![Screenshot (19)](./documentation/screenshots/story-view.PNG)
+*Story View*
+
+![Screenshot (20)](./documentation/02.PNG)
+*Additional Screenshot*
+
+![Screenshot (21)](./documentation/database_table.PNG)
+*Database Table Screenshot*
+
+## Project Details 📖
+For more in-depth information about the project, you can explore the documentation folder provided. It includes additional insights and documentation about the project's structure and components.
+
+For a detailed explanation of the project's features, you can refer to the [Project Documentation](./documentation/project-file-0.0.1.pdf).
+
+For any inquiries or further information, feel free to contact me at <a href="https://ravikishan.me">Ravi Kishan</a>
+
+## Tech Stack Badges 🛡️
+<p align="left">
+    <img src="https://img.shields.io/badge/HTML5-semantic-orange" alt="HTML5 semantic">
+    <img src="https://img.shields.io/badge/CSS3-design-green" alt="CSS3 flexbox"> 
+    <img src="https://img.shields.io/badge/JavaScript-ES6-blue" alt="JavaScript ES6">
+    <img src="https://img.shields.io/badge/Tailwindcss-2.0-lightgreen" alt="Tailwindcss 2.0">
+    <img src="https://img.shields.io/badge/Alpinejs-2.0-blue" alt="Alpinejs 2.0">
+    <img src="https://img.shields.io/badge/Laravel-8.0-red" alt="Laravel 8.0">
+    <img src="https://img.shields.io/badge/PHP-7.4-blue" alt="PHP 7.4">
+    <img src="https://img.shields.io/badge/MySQL-Database-yellow" alt="MySQL Database">
+    <img src="https://img.shields.io/badge/Redis-Database-red" alt="Redis Database">
+    <img src="https://img.shields.io/badge/Node.js-12.0-green" alt="Node.js 12.0">  
+    <img src="https://img.shields.io/badge/NPM-6.0-green" alt="NPM 6.0">
+    <img src="https://img.shields.io/badge/Composer-2.0-green" alt="Composer 2.0">
+    <img src="https://img.shields.io/badge/FFmpeg-4.0-lightgrey" alt="FFmpeg 4.0">
+    <img src="https://img.shields.io/badge/Pusher-Realtime%20Chat-red" alt="Pusher Realtime Chat">
+    <img src="https://img.shields.io/badge/MailTrap-Email%20Verification-blue" alt="MailTrap Email Verification">
+    <img src="https://img.shields.io/badge/Netlify-Deployment-blueviolet" alt="Netlify Deployment">
+
+</p>
+
+## License 📜
+This project is provided for educational purposes and is not intended for production use. It's open source and is licensed under the [MIT LICENSE](./LICENSE).
+
+Explore and contribute to "Relaxgram!" 🚀🌟
