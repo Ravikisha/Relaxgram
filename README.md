@@ -1,10 +1,7 @@
 # Relaxgram - A Social Media Clone 🚀🌟 
+<img src="./documentation/project_poster.png" width="100%" alt="Relaxgram Poster">
 
 ## Team Members 🧑‍🤝‍🧑
-<!-- - Ravi Kishan
-- Pawan Gupta
-- Divya
-- Shivani Yadav -->
 <p align="left">
 <a href="https://github.com/ravikisha">
 <img src="https://img.shields.io/badge/Ravi Kishan-ravikisha-blue">
