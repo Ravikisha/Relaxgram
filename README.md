@@ -62,7 +62,7 @@ For a detailed explanation of the project's features, you can refer to the [Proj
 
 For any inquiries or further information, feel free to contact me at <a href="https://ravikishan.me">Ravi Kishan</a>
 
-## Tech Stack Badges 🛡️
+## Tech Stack 🛡️
 <p align="left">
     <img src="https://img.shields.io/badge/HTML5-semantic-orange" alt="HTML5 semantic">
     <img src="https://img.shields.io/badge/CSS3-design-green" alt="CSS3 flexbox"> 
