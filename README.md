@@ -55,6 +55,33 @@ To run this project on your local machine, follow these steps:
 - Composer version 2.0 or higher.
 - Laravel version 8.0.
 
+## Project Details 📖
+For more in-depth information about the project, you can explore the documentation folder provided. It includes additional insights and documentation about the project's structure and components.
+
+For a detailed explanation of the project's features, you can refer to the [Project Documentation](./documentation/project-file-0.0.1.pdf).
+
+For any inquiries or further information, feel free to contact me at <a href="https://ravikishan.me">Ravi Kishan</a>
+
+## Tech Stack Badges 🛡️
+<p align="left">
+    <img src="https://img.shields.io/badge/HTML5-semantic-orange" alt="HTML5 semantic">
+    <img src="https://img.shields.io/badge/CSS3-design-green" alt="CSS3 flexbox"> 
+    <img src="https://img.shields.io/badge/JavaScript-ES6-blue" alt="JavaScript ES6">
+    <img src="https://img.shields.io/badge/Tailwindcss-2.0-lightgreen" alt="Tailwindcss 2.0">
+    <img src="https://img.shields.io/badge/Alpinejs-2.0-blue" alt="Alpinejs 2.0">
+    <img src="https://img.shields.io/badge/Laravel-8.0-red" alt="Laravel 8.0">
+    <img src="https://img.shields.io/badge/PHP-7.4-blue" alt="PHP 7.4">
+    <img src="https://img.shields.io/badge/MySQL-Database-yellow" alt="MySQL Database">
+    <img src="https://img.shields.io/badge/Redis-Database-red" alt="Redis Database">
+    <img src="https://img.shields.io/badge/Node.js-12.0-green" alt="Node.js 12.0">  
+    <img src="https://img.shields.io/badge/NPM-6.0-green" alt="NPM 6.0">
+    <img src="https://img.shields.io/badge/Composer-2.0-green" alt="Composer 2.0">
+    <img src="https://img.shields.io/badge/FFmpeg-4.0-lightgrey" alt="FFmpeg 4.0">
+    <img src="https://img.shields.io/badge/Pusher-Realtime%20Chat-red" alt="Pusher Realtime Chat">
+    <img src="https://img.shields.io/badge/MailTrap-Email%20Verification-blue" alt="MailTrap Email Verification">
+    <img src="https://img.shields.io/badge/Netlify-Deployment-blueviolet" alt="Netlify Deployment">
+</p>
+
 ## Project Screenshots 📷
 Here are some screenshots to give you a glimpse of "Relaxgram":
 
@@ -120,34 +147,6 @@ Here are some screenshots to give you a glimpse of "Relaxgram":
 
 ![Screenshot (21)](./documentation/database_table.png)
 *Database Table Screenshot*
-
-## Project Details 📖
-For more in-depth information about the project, you can explore the documentation folder provided. It includes additional insights and documentation about the project's structure and components.
-
-For a detailed explanation of the project's features, you can refer to the [Project Documentation](./documentation/project-file-0.0.1.pdf).
-
-For any inquiries or further information, feel free to contact me at <a href="https://ravikishan.me">Ravi Kishan</a>
-
-## Tech Stack Badges 🛡️
-<p align="left">
-    <img src="https://img.shields.io/badge/HTML5-semantic-orange" alt="HTML5 semantic">
-    <img src="https://img.shields.io/badge/CSS3-design-green" alt="CSS3 flexbox"> 
-    <img src="https://img.shields.io/badge/JavaScript-ES6-blue" alt="JavaScript ES6">
-    <img src="https://img.shields.io/badge/Tailwindcss-2.0-lightgreen" alt="Tailwindcss 2.0">
-    <img src="https://img.shields.io/badge/Alpinejs-2.0-blue" alt="Alpinejs 2.0">
-    <img src="https://img.shields.io/badge/Laravel-8.0-red" alt="Laravel 8.0">
-    <img src="https://img.shields.io/badge/PHP-7.4-blue" alt="PHP 7.4">
-    <img src="https://img.shields.io/badge/MySQL-Database-yellow" alt="MySQL Database">
-    <img src="https://img.shields.io/badge/Redis-Database-red" alt="Redis Database">
-    <img src="https://img.shields.io/badge/Node.js-12.0-green" alt="Node.js 12.0">  
-    <img src="https://img.shields.io/badge/NPM-6.0-green" alt="NPM 6.0">
-    <img src="https://img.shields.io/badge/Composer-2.0-green" alt="Composer 2.0">
-    <img src="https://img.shields.io/badge/FFmpeg-4.0-lightgrey" alt="FFmpeg 4.0">
-    <img src="https://img.shields.io/badge/Pusher-Realtime%20Chat-red" alt="Pusher Realtime Chat">
-    <img src="https://img.shields.io/badge/MailTrap-Email%20Verification-blue" alt="MailTrap Email Verification">
-    <img src="https://img.shields.io/badge/Netlify-Deployment-blueviolet" alt="Netlify Deployment">
-
-</p>
 
 ## License 📜
 This project is provided for educational purposes and is not intended for production use. It's open source and is licensed under the [MIT LICENSE](./LICENSE).
